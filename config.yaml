@@ -1,0 +1,150 @@
+# ============================================================
+# SHARE DASHBOARD — FUENTE DE VERDAD
+# Share Dashboard · Investor Reporting Pipeline
+# Versión: 1.0 | Generado con datos reales de campo
+# ============================================================
+
+# ------------------------------------------------------------
+# PATHS (rutas relativas al directorio raíz del proyecto)
+# ------------------------------------------------------------
+paths:
+  raw_data:        "data/raw/"
+  processed_data:  "data/processed/"
+  master:          "data/master.csv"
+  fx_file:         "data/raw/tipos_de_cambio.xlsx"
+  log_dir:         "logs/"
+
+# ------------------------------------------------------------
+# FINGERPRINT DEL EXCEL DE SHARES
+# Archivo: 02_YYYY_Data_OTC_CloseUP_Moneda_local.xlsx
+# ------------------------------------------------------------
+shares_file:
+  header_row: 2          # índice 0-based → fila 3 en Excel
+  skip_rows: [0, 1]      # filas 1 y 2 con texto de filtros
+
+  # Nombres EXACTOS de columnas en el Excel fuente
+  columns:
+    categoria:    "Categoría"
+    sub_cat:      "cat"
+    laboratorio:  "Laboratorio"
+    producto:     "Producto"
+    metric_name:  "MetricName"
+    anio_movil:   "Año Móvil"
+    valor:        "Rolling 12M (Metric Selector)"
+
+  # Valores EXACTOS en MetricName
+  metric_values:
+    market_share: "%MS (Rolling 12M)"
+    market_size:  "Mercado (Rolling 12M)"
+
+  # Normalización de Año Móvil → clave corta
+  # "Año Móvil 1 (Últimos 12M)" es el más reciente
+  anio_movil_map:
+    "Año Móvil 1 (Últimos 12M)": "am1"
+    "Año Móvil 2":               "am2"
+    "Año Móvil 3":               "am3"
+    "Año Móvil 4":               "am4"
+    "Año Móvil 5":               "am5"
+
+  # Hojas = países disponibles
+  sheets:
+    ARG: "Argentina"
+    BRA: "Brasil"
+    CHI: "Chile"
+    COL: "Colombia"
+    ECU: "Ecuador"
+    MEX: "México"
+    PER: "Perú"
+
+  # String EXACTO de Genomma en columna Laboratorio
+  genomma_string: "GENOMMA LAB"
+
+# ------------------------------------------------------------
+# FINGERPRINT DEL ARCHIVO TIPO DE CAMBIO
+# Archivo: YYYY_MM_Tipos_de_Cambio.xlsx | Hoja: Resumen
+# ------------------------------------------------------------
+fx_file:
+  sheet:       "Resumen"
+  date_col:    1          # columna B (índice 0-based)
+  header_row:  9          # datos empiezan en fila 10 (índice 9)
+
+  # Columna ER por país (índice 0-based en la hoja Resumen)
+  # Ecuador usa USD → ER = 1.0 hardcoded
+  er_columns:
+    ARG: 9
+    BRA: 15
+    CHI: 18
+    COL: 21
+    ECU: null     # USD nativo → 1.0
+    MEX: 3
+    PER: 30
+
+# ------------------------------------------------------------
+# SCHEMA DEL MASTER.CSV
+# ------------------------------------------------------------
+master_schema:
+  # Clave primaria compuesta (idempotencia del pipeline)
+  primary_key:
+    - pais
+    - categoria
+    - sub_categoria
+    - laboratorio
+    - producto
+
+  # Columnas de dimensión
+  dimensions:
+    - pais           # código: ARG / BRA / CHI / COL / ECU / MEX / PER
+    - pais_nombre    # nombre completo: Argentina / Brasil / etc.
+    - categoria      # Categoría Madre (ej: 3.GASTRO)
+    - sub_categoria  # Sub-categoría (ej: 12.ACIDEZ Y GASTRITIS)
+    - laboratorio    # Nombre fabricante
+    - producto       # Nombre producto
+    - es_genomma     # bool: True si laboratorio == GENOMMA LAB
+
+  # Market Share % por período (0-100)
+  market_share:
+    - ms_am1    # % share Año Móvil 1 (más reciente)
+    - ms_am2
+    - ms_am3
+    - ms_am4
+    - ms_am5    # % share Año Móvil 5 (más antiguo)
+
+  # Mercado en moneda local por período
+  market_size_local:
+    - mkt_am1   # valor en moneda local AM1
+    - mkt_am2
+    - mkt_am3
+    - mkt_am4
+    - mkt_am5
+
+  # Mercado convertido a USD (calculado en process.py con ER)
+  market_size_usd:
+    - mkt_usd_am1
+    - mkt_usd_am2
+    - mkt_usd_am3
+    - mkt_usd_am4
+    - mkt_usd_am5
+
+  # Tipo de cambio aplicado (trazabilidad)
+  fx_metadata:
+    - er_aplicado   # valor ER del archivo oficial Genomma
+
+# ------------------------------------------------------------
+# REGLAS DE VALIDACIÓN
+# ------------------------------------------------------------
+validation:
+  required_not_null:
+    - pais
+    - categoria
+    - sub_categoria
+    - laboratorio
+    - producto
+  on_validation_failure: "skip"
+
+# ------------------------------------------------------------
+# CONFIGURACIÓN DE LOGS
+# ------------------------------------------------------------
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+  file_pattern: "logs/pipeline_{date}.log"
