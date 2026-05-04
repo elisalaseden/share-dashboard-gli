@@ -1,0 +1,6 @@
+data/master_backup_*.csv
+logs/
+*.log
+__pycache__/
+*.pyc
+diagnostico_*.py

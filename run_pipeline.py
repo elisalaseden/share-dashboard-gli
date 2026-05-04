@@ -18,9 +18,6 @@ from pathlib import Path
 
 import yaml
 
-sys.stdout.reconfigure(encoding='utf-8')
-sys.stderr.reconfigure(encoding='utf-8')
-
 
 def setup_logging(config: dict) -> None:
     log_dir = Path(config["paths"].get("log_dir", "logs/"))
