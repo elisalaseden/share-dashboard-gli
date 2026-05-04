@@ -322,8 +322,9 @@ def validate(df: pd.DataFrame, cfg_validation: dict) -> Tuple[pd.DataFrame, Vali
     """
     report = ValidationReport()
     required_not_null = cfg_validation.get("required_not_null", [])
-    ms_range = cfg_validation.get("ms_range")
-    mkt_min = cfg_validation.get("mkt_min")
+    ms_min = cfg_validation["ms_range"]["min"]
+    ms_max = cfg_validation["ms_range"]["max"]
+    mkt_min = cfg_validation.get("mkt_min", 0.0)
 
     valid_mask = pd.Series(True, index=df.index)
     rejection_reasons = pd.Series("", index=df.index)
@@ -335,19 +336,19 @@ def validate(df: pd.DataFrame, cfg_validation: dict) -> Tuple[pd.DataFrame, Vali
             rejection_reasons[null_mask & valid_mask] += f"NULL en {col}; "
             valid_mask &= ~null_mask
 
-    # Regla 2 & 3: rangos para market share y market size (opcionales)
+    # Regla 2 & 3: rangos para market share y market size
     for p in ["am1", "am2", "am3", "am4", "am5"]:
         ms_col = f"ms_{p}"
         mkt_col = f"mkt_{p}"
 
-        if ms_range is not None and ms_col in df.columns:
+        if ms_col in df.columns:
             out_range = df[ms_col].notna() & (
-                (df[ms_col] < ms_range["min"]) | (df[ms_col] > ms_range["max"])
+                (df[ms_col] < ms_min) | (df[ms_col] > ms_max)
             )
             rejection_reasons[out_range & valid_mask] += f"MS fuera de rango en {ms_col}; "
             valid_mask &= ~out_range
 
-        if mkt_min is not None and mkt_col in df.columns:
+        if mkt_col in df.columns:
             negative = df[mkt_col].notna() & (df[mkt_col] < mkt_min)
             rejection_reasons[negative & valid_mask] += f"MKT negativo en {mkt_col}; "
             valid_mask &= ~negative
@@ -402,20 +403,51 @@ def process(
     logger.info("=== INICIO PROCESS ===")
 
     # 1. Concatenar todas las hojas
-    logger.info("Paso 1/5: Concatenando hojas")
+    logger.info("Paso 1/6: Concatenando hojas")
     df_all = pd.concat(list(raw_data.values()), ignore_index=True)
     logger.info(f"  Total combinado: {len(df_all):,} filas")
 
-    # 2. Pivot long → wide
-    logger.info("Paso 2/5: Pivot long → wide")
+    # 2. Brand consolidation — renombrar variantes a marca madre y re-agregar
+    logger.info("Paso 2/6: Brand consolidation")
+    bc: dict = config.get("brand_consolidation") or {}
+    if bc:
+        col_prod = cfg_shares["columns"]["producto"]
+        col_cat  = cfg_shares["columns"]["categoria"]
+        col_sub  = cfg_shares["columns"]["sub_cat"]
+        col_lab  = cfg_shares["columns"]["laboratorio"]
+        col_mn   = cfg_shares["columns"]["metric_name"]
+        col_am   = cfg_shares["columns"]["anio_movil"]
+        col_val  = cfg_shares["columns"]["valor"]
+
+        antes = df_all[col_prod].nunique()
+        df_all[col_prod] = df_all[col_prod].replace(bc)
+        despues = df_all[col_prod].nunique()
+
+        # Re-agregar: sumar valores de variantes consolidadas bajo la misma clave
+        group_cols = ["pais", col_cat, col_sub, col_lab, col_prod, col_mn, col_am]
+        df_all = (
+            df_all
+            .groupby(group_cols, as_index=False, dropna=False)[col_val]
+            .sum()
+        )
+        logger.info(
+            f"  Brand consolidation: {len(bc)} mapeos | "
+            f"productos antes={antes} → después={despues} | "
+            f"{len(df_all):,} filas post-reagregación"
+        )
+    else:
+        logger.info("  Brand consolidation: no definida en config.yaml — omitiendo")
+
+    # 3. Pivot long → wide
+    logger.info("Paso 3/6: Pivot long → wide")
     df_wide = pivot_long_to_wide(df_all, cfg_shares)
 
-    # 3. Flag Genomma
-    logger.info("Paso 3/5: Agregando flag es_genomma")
+    # 4. Flag Genomma
+    logger.info("Paso 4/6: Agregando flag es_genomma")
     df_wide = add_genomma_flag(df_wide, cfg_shares["genomma_string"])
 
-    # 4. Cargar tipo de cambio y convertir a USD
-    logger.info("Paso 4/5: Aplicando tipos de cambio")
+    # 5. Cargar tipo de cambio y convertir a USD
+    logger.info("Paso 5/6: Aplicando tipos de cambio")
     fx_rates = load_fx_rates(fx_path, cfg_fx)
     df_wide = apply_fx_conversion(df_wide, fx_rates)
 
@@ -423,8 +455,8 @@ def process(
     pais_nombres = cfg_shares["sheets"]  # {ARG: Argentina, ...}
     df_wide["pais_nombre"] = df_wide["pais"].map(pais_nombres)
 
-    # 5. Validación de calidad
-    logger.info("Paso 5/5: Validando calidad de datos")
+    # 6. Validación de calidad
+    logger.info("Paso 6/6: Validando calidad de datos")
     df_valid, report = validate(df_wide, cfg_val)
 
     logger.info(f"=== PROCESS COMPLETADO | {len(df_valid):,} registros válidos ===")
