@@ -1,0 +1,47 @@
+2026-05-03 17:43:27,426 | INFO | root | Log activo: logs\pipeline_20260503_174327.log
+2026-05-03 17:43:28,205 | INFO | run_pipeline | ━━━ PASO 1/3: INGEST ━━━
+2026-05-03 17:43:28,206 | INFO | ingest | Iniciando ingesta | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx | hojas: ['ARG', 'BRA', 'CHI', 'COL', 'ECU', 'MEX', 'PER']
+2026-05-03 17:43:28,206 | INFO | ingest | Leyendo hoja: ARG | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-03 17:43:30,411 | INFO | ingest | Hoja 'ARG': 12,344 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-03 17:43:30,412 | INFO | ingest | Leyendo hoja: BRA | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-03 17:43:31,932 | INFO | ingest | Hoja 'BRA': 21,738 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-03 17:43:31,932 | INFO | ingest | Leyendo hoja: CHI | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-03 17:43:32,591 | INFO | ingest | Hoja 'CHI': 7,584 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-03 17:43:32,591 | INFO | ingest | Leyendo hoja: COL | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-03 17:43:34,698 | INFO | ingest | Hoja 'COL': 23,972 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-03 17:43:34,698 | INFO | ingest | Leyendo hoja: ECU | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-03 17:43:35,823 | INFO | ingest | Hoja 'ECU': 13,022 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-03 17:43:35,823 | INFO | ingest | Leyendo hoja: MEX | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-03 17:43:37,793 | INFO | ingest | Hoja 'MEX': 23,090 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-03 17:43:37,793 | INFO | ingest | Leyendo hoja: PER | archivo: data\raw\02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-03 17:43:38,717 | INFO | ingest | Hoja 'PER': 9,806 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-03 17:43:38,717 | INFO | ingest | Ingesta completada | 7 hojas | 111,556 filas totales
+2026-05-03 17:43:38,717 | INFO | run_pipeline | ━━━ PASO 2/3: PROCESS ━━━
+2026-05-03 17:43:38,717 | INFO | process | === INICIO PROCESS ===
+2026-05-03 17:43:38,717 | INFO | process | Paso 1/6: Concatenando hojas
+2026-05-03 17:43:38,720 | INFO | process |   Total combinado: 111,556 filas
+2026-05-03 17:43:38,720 | INFO | process | Paso 2/6: Consolidando marcas GLI
+2026-05-03 17:43:44,224 | INFO | process | Consolidación de marcas: 102 variantes mapeadas | 1,030 filas renombradas
+2026-05-03 17:43:44,224 | INFO | process | Paso 3/6: Pivot long → wide
+2026-05-03 17:43:44,374 | INFO | process | Pivot completado: 13,642 filas × 15 columnas
+2026-05-03 17:43:44,375 | INFO | process | Paso 4/6: Agregando flag es_genomma
+2026-05-03 17:43:44,377 | INFO | process | Flag Genomma: 171 productos identificados como GLI
+2026-05-03 17:43:44,378 | INFO | process | Paso 5/6: Aplicando tipos de cambio
+2026-05-03 17:43:44,378 | ERROR | run_pipeline | PIPELINE FALLIDO después de 16.2s
+Traceback (most recent call last):
+  File "C:\Users\User1\OneDrive\Documents\01 Consumer Insights\Share-Dashboard\run_pipeline.py", line 97, in main
+    df_processed, validation_report = process(
+                                      ~~~~~~~^
+        raw_data=raw_data,
+        ^^^^^^^^^^^^^^^^^^
+        config=config,
+        ^^^^^^^^^^^^^^
+        fx_path=args.fx,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\User1\OneDrive\Documents\01 Consumer Insights\Share-Dashboard\process.py", line 478, in process
+    fx_rates = load_fx_rates(fx_path, cfg_fx)
+  File "C:\Users\User1\OneDrive\Documents\01 Consumer Insights\Share-Dashboard\process.py", line 78, in load_fx_rates
+    raise FXLoadError(f"Archivo tipo de cambio no encontrado: {path.absolute()}")
+process.FXLoadError: Archivo tipo de cambio no encontrado: C:\Users\User1\OneDrive\Documents\01 Consumer Insights\Share-Dashboard\data\raw\2026.03 Tipos de Cambio.xlsx

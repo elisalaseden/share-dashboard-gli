@@ -1,0 +1,862 @@
+2026-05-01 21:55:24,962 | INFO | root | Log activo: logs\pipeline_pcbev_20260501_215524.log
+2026-05-01 21:55:24,966 | INFO | run_pipeline_pcbev | ━━━ PASO 1/3: INGEST PC/BEV ━━━
+2026-05-01 21:55:24,966 | INFO | ingest_pcbev | === INICIO INGEST PC/BEV | 2 archivo(s) ===
+2026-05-01 21:55:24,967 | INFO | ingest_pcbev | Leyendo archivo: 02.2026 Brasil PC_Beverages_Base Shares.xlsx
+2026-05-01 21:57:11,875 | INFO | ingest_pcbev |   Filas leídas: 1,048,565 | hoja: 'Sheet1'
+2026-05-01 21:57:13,741 | WARNING | ingest_pcbev | No se pudo extraer fecha de reporte del nombre: '02.2026 Brasil PC_Beverages_Base Shares'
+2026-05-01 21:57:13,791 | INFO | ingest_pcbev |   Archivo procesado: 02.2026 Brasil PC_Beverages_Base Shares.xlsx | reporte: desconocido | submarket únicos: ['2 en 1', '3s pasos', 'Acondicionador', 'Cicatrices', 'Corporales', 'Hidratantes', 'Kit', 'Limpieza', 'Piernas', 'Shampoo', 'Solar', 'Sueros & Isotonicas']
+2026-05-01 21:57:13,791 | INFO | ingest_pcbev | Leyendo archivo: 03.2026 Brasil PC_Beverages_Base Shares.xlsx
+2026-05-01 21:59:02,401 | INFO | ingest_pcbev |   Filas leídas: 1,048,565 | hoja: 'Sheet1'
+2026-05-01 21:59:04,070 | WARNING | ingest_pcbev | No se pudo extraer fecha de reporte del nombre: '03.2026 Brasil PC_Beverages_Base Shares'
+2026-05-01 21:59:04,119 | INFO | ingest_pcbev |   Archivo procesado: 03.2026 Brasil PC_Beverages_Base Shares.xlsx | reporte: desconocido | submarket únicos: ['2 en 1', '3s pasos', 'Acondicionador', 'Cicatrices', 'Corporales', 'Hidratantes', 'Kit', 'Limpieza', 'Piernas', 'Shampoo', 'Solar', 'Sueros & Isotonicas', 'Tratamiento']
+2026-05-01 21:59:04,157 | INFO | ingest_pcbev | Combinando 2 archivo(s) | 60 períodos únicos total
+2026-05-01 21:59:06,371 | INFO | ingest_pcbev | Combinación completada: 1,096,261 filas totales
+2026-05-01 21:59:06,589 | INFO | ingest_pcbev | === INGEST PC/BEV COMPLETADO ===
+  Archivos procesados: 2
+  Período: 03/2021 → 02/2026 (60 meses)
+  Filas consolidadas: 1,096,261
+2026-05-01 21:59:06,595 | INFO | run_pipeline_pcbev | ━━━ PASO 2/3: PROCESS PC/BEV ━━━
+2026-05-01 21:59:06,596 | INFO | process_pcbev | === INICIO PROCESS PC/BEV ===
+2026-05-01 21:59:06,596 | INFO | process_pcbev |   Filas raw recibidas: 1,096,261
+2026-05-01 21:59:06,596 | INFO | process_pcbev | Paso 1/7: Calculando rangos de períodos AM
+2026-05-01 21:59:06,772 | INFO | process_pcbev | Período más reciente detectado: 02/2026
+2026-05-01 21:59:06,779 | INFO | process_pcbev |   AM1: 03/2025 → 02/2026
+2026-05-01 21:59:06,779 | INFO | process_pcbev |   AM2: 03/2024 → 02/2025
+2026-05-01 21:59:06,780 | INFO | process_pcbev |   AM3: 03/2023 → 02/2024
+2026-05-01 21:59:06,780 | INFO | process_pcbev |   AM4: 03/2022 → 02/2023
+2026-05-01 21:59:06,780 | INFO | process_pcbev |   AM5: 03/2021 → 02/2022
+2026-05-01 21:59:06,781 | INFO | process_pcbev | Paso 2/7: Asignando am_label por período
+2026-05-01 21:59:07,074 | INFO | process_pcbev | Paso 3/7: Aplicando correcciones de producto
+2026-05-01 21:59:07,588 | INFO | process_pcbev |   [RECLASSIFY] ASEPXIA: Hair Care → Faciales | 18 filas
+2026-05-01 21:59:08,084 | INFO | process_pcbev |   [RECLASSIFY] ASEPXIA GEN: Hair Care → Faciales | 1 filas
+2026-05-01 21:59:08,582 | INFO | process_pcbev |   [RECLASSIFY] CICATRICURE: Hair Care → Faciales | 18 filas
+2026-05-01 21:59:09,137 | INFO | process_pcbev |   [RECLASSIFY] TEATRICAL: Hair Care → Faciales | 11 filas
+2026-05-01 21:59:09,741 | INFO | process_pcbev |   [RENAME] ASEPXIA GEN → ASEPXIA: 647 filas
+2026-05-01 21:59:09,741 | INFO | process_pcbev | Correcciones aplicadas: 1,096,261 → 1,096,261 filas (0 eliminadas)
+2026-05-01 21:59:09,745 | INFO | process_pcbev | Paso 4/7: Agregando y calculando market share
+2026-05-01 21:59:10,561 | INFO | process_pcbev | Agregación completada: 5,096 combinaciones únicas (pais × categoria × laboratorio × producto)
+2026-05-01 21:59:10,566 | INFO | process_pcbev | Paso 5/7: Agregando flag es_genomma
+2026-05-01 21:59:10,572 | INFO | process_pcbev | Flag Genomma: 11 productos identificados como GLI
+2026-05-01 21:59:10,573 | INFO | process_pcbev | Paso 6/7: Aplicando tipo de cambio BRA
+2026-05-01 21:59:10,573 | INFO | process_pcbev | Cargando ER BRA desde: data/raw/2026.03_Tipos de Cambio.xlsx
+2026-05-01 21:59:10,680 | INFO | process_pcbev | ER BRA aplicado: 5.2429 BRL/USD | período: 2026-03-31 00:00:00
+2026-05-01 21:59:10,686 | INFO | process_pcbev | Conversión USD completada | ER BRA: 5.2429
+2026-05-01 21:59:10,687 | INFO | process_pcbev | Paso 7/7: Validando calidad
+2026-05-01 21:59:10,711 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'BEBIDAS', 'laboratorio': 'AGAFARMA', 'producto': 'AGAFARMA'}
+2026-05-01 21:59:10,711 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'BEBIDAS', 'laboratorio': 'BIOLEVE', 'producto': 'ISOTONICO BIOSPORT'}
+2026-05-01 21:59:10,712 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'BEBIDAS', 'laboratorio': 'IJB NUTRIFARMA', 'producto': 'SUUM'}
+2026-05-01 21:59:10,712 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'BEBIDAS', 'laboratorio': 'KRESS', 'producto': 'REIDRAXAL'}
+2026-05-01 21:59:10,712 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'BEBIDAS', 'laboratorio': 'MIDWAY', 'producto': 'WHEY TO GO'}
+2026-05-01 21:59:10,713 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'BEBIDAS', 'laboratorio': 'MOOVE NUTRITION', 'producto': 'MOOVE'}
+2026-05-01 21:59:10,713 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'BEBIDAS', 'laboratorio': 'TAKEDA PHARMA', 'producto': 'HIDRAFIX 90'}
+2026-05-01 21:59:10,714 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'A NOSSA DROGARIA', 'producto': 'AMMORE'}
+2026-05-01 21:59:10,714 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ACHE', 'producto': 'PROFUSE INTEME'}
+2026-05-01 21:59:10,714 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ADCOS', 'producto': 'SPECIFIC'}
+2026-05-01 21:59:10,714 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ADV FARMA', 'producto': 'GERIADERM'}
+2026-05-01 21:59:10,715 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'AFETIVA COSMETICA', 'producto': 'BIOSEGREDO'}
+2026-05-01 21:59:10,715 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'AFFINITA BRASIL', 'producto': 'AFFINITA GESTANTE CHEIA DE GRACA'}
+2026-05-01 21:59:10,716 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ARAGO', 'producto': 'AQUAPELE'}
+2026-05-01 21:59:10,716 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ARAGO', 'producto': 'SLIMFORCE'}
+2026-05-01 21:59:10,716 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ASSIFARMA', 'producto': 'NEXTER VASELINA'}
+2026-05-01 21:59:10,716 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ASSIFARMA', 'producto': 'SVEDA LOCAO CORPORAL'}
+2026-05-01 21:59:10,716 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'AVENE', 'producto': 'AVENE COLD CREAM'}
+2026-05-01 21:59:10,717 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'AVENE', 'producto': 'HYDRANCE OPTIMALE'}
+2026-05-01 21:59:10,717 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BAGO', 'producto': 'FRESH SUN'}
+2026-05-01 21:59:10,718 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BEL COL', 'producto': 'SOLECTIV'}
+2026-05-01 21:59:10,718 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BERGA COSMETICOS', 'producto': 'BERGAMIA'}
+2026-05-01 21:59:10,719 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BESINS', 'producto': 'OGESTAN ANTIESTRIAS'}
+2026-05-01 21:59:10,719 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BESTBRONZE', 'producto': 'POS-BRONZE'}
+2026-05-01 21:59:10,719 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIO INSTINTO', 'producto': 'MARY LIFE LEITE DE CABRA'}
+2026-05-01 21:59:10,720 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOAGE', 'producto': 'BIOAGE VINO THERAPY'}
+2026-05-01 21:59:10,720 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOCLASS COSMETICOS', 'producto': 'DA VOVO'}
+2026-05-01 21:59:10,720 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOCLASS COSMETICOS', 'producto': 'FINA FLOR AMOR'}
+2026-05-01 21:59:10,721 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOCLASS COSMETICOS', 'producto': 'FUTURA MAMAE'}
+2026-05-01 21:59:10,721 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOLAB', 'producto': 'REPITELIN'}
+2026-05-01 21:59:10,722 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOLAB', 'producto': 'STIMULEN'}
+2026-05-01 21:59:10,722 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOMARINE', 'producto': 'DERMA SENSORIALLE'}
+2026-05-01 21:59:10,722 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOMATIKA', 'producto': 'FTB PANTENOL DERMA'}
+2026-05-01 21:59:10,723 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BIOTEC COSMETICOS', 'producto': 'HIDRAT CORP BIO2'}
+2026-05-01 21:59:10,723 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BOTANIC BRASIL', 'producto': 'BOTANIC BOB'}
+2026-05-01 21:59:10,723 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'BOTANIC BRASIL', 'producto': 'NIRAJ'}
+2026-05-01 21:59:10,723 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CH COSMETICOS', 'producto': 'EVERYDAY'}
+2026-05-01 21:59:10,723 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CICLO COSMETICOS', 'producto': 'CICLO AMORE'}
+2026-05-01 21:59:10,723 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CICLO COSMETICOS', 'producto': 'CICLO ROUGE'}
+2026-05-01 21:59:10,724 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CIFARMA', 'producto': 'AGE DOR HIDR.REPAR'}
+2026-05-01 21:59:10,724 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CIMED', 'producto': 'CICATRIONE'}
+2026-05-01 21:59:10,724 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CIMED', 'producto': 'DERSISKIN'}
+2026-05-01 21:59:10,724 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CIMED', 'producto': 'DEXATOP'}
+2026-05-01 21:59:10,724 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CIMED', 'producto': 'GOICODRAT'}
+2026-05-01 21:59:10,724 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CIMED', 'producto': 'MEME CARE'}
+2026-05-01 21:59:10,725 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CLEAR COSMETICOS', 'producto': 'CLEAR PLUS'}
+2026-05-01 21:59:10,725 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'COLGATE PALMOLIVE', 'producto': 'PALMOLIVE AMAZONAS'}
+2026-05-01 21:59:10,725 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'COLGATE PALMOLIVE', 'producto': 'PALMOLIVE NATUREZA SECRETA'}
+2026-05-01 21:59:10,725 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CONDOR', 'producto': 'CONDOR'}
+2026-05-01 21:59:10,725 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'COPER', 'producto': 'ELLE ELLA'}
+2026-05-01 21:59:10,725 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'COTY', 'producto': 'RASTRO'}
+2026-05-01 21:59:10,725 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CREMER', 'producto': 'TOM JERRY BABY'}
+2026-05-01 21:59:10,726 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CREMER', 'producto': 'TOPZ SOLAR'}
+2026-05-01 21:59:10,726 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'CRISTALIA', 'producto': 'NUTRILINE'}
+2026-05-01 21:59:10,726 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DEP COSMETICOS', 'producto': 'SOFTFIX'}
+2026-05-01 21:59:10,726 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DERMAGE', 'producto': 'BEAUTY 4 FUN'}
+2026-05-01 21:59:10,726 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DERMAGE', 'producto': 'DRENCELL'}
+2026-05-01 21:59:10,726 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DERMAGE', 'producto': 'HIDRASHOWER'}
+2026-05-01 21:59:10,726 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DERMAGE', 'producto': 'STRIACTIVE'}
+2026-05-01 21:59:10,727 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DERMAGE', 'producto': 'UREIACTIVE'}
+2026-05-01 21:59:10,727 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DERMATUS', 'producto': 'PHOTOPLUS'}
+2026-05-01 21:59:10,727 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DERMOSENSE', 'producto': 'MABELLY'}
+2026-05-01 21:59:10,727 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'DR ORGANICO', 'producto': 'DR ORGANICO'}
+2026-05-01 21:59:10,727 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ECOAS', 'producto': 'HIDRATANTE'}
+2026-05-01 21:59:10,728 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ELOFAR', 'producto': 'PELLETRAT'}
+2026-05-01 21:59:10,728 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'EMS', 'producto': 'CICATENOL DERMA'}
+2026-05-01 21:59:10,728 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ESTHETIC', 'producto': 'BELLADONNA'}
+2026-05-01 21:59:10,728 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'EXPANSCIENCE', 'producto': 'MUSTELA DUPLA ACAO'}
+2026-05-01 21:59:10,729 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FARMAX', 'producto': 'LOCAO HIDRATANTE FMX'}
+2026-05-01 21:59:10,729 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FARMAX', 'producto': 'PROTETOR SOLAR'}
+2026-05-01 21:59:10,729 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FBM FARMA', 'producto': 'NUTRICORPORE'}
+2026-05-01 21:59:10,730 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FELIZ FARMA', 'producto': 'FELIZ VIT CANELA DE VELHO'}
+2026-05-01 21:59:10,730 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FELIZ FARMA', 'producto': 'FELIZ VIT SEBO DE CARNEIRO'}
+2026-05-01 21:59:10,730 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FLORA COSMETICOS', 'producto': 'OX PLANTS'}
+2026-05-01 21:59:10,730 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FLORA VIE', 'producto': 'FLORA VIE HIDRATANTE'}
+2026-05-01 21:59:10,730 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FLORES&VEGETAIS', 'producto': 'BRONZE EXPRESS'}
+2026-05-01 21:59:10,730 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FLUEVE', 'producto': 'LOCAO HIDRATANTE FLU'}
+2026-05-01 21:59:10,731 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'FQM GRUPO', 'producto': 'IMECAP CELLUT'}
+2026-05-01 21:59:10,731 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'GLENMARK', 'producto': 'SUNDERM'}
+2026-05-01 21:59:10,731 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'GRUPO GCF BRASIL', 'producto': 'I9 LIFE ALGY CARTRIL'}
+2026-05-01 21:59:10,731 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'GRUPO GCF BRASIL', 'producto': 'I9 LIFE RELAX'}
+2026-05-01 21:59:10,731 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'GRUPO GCF BRASIL', 'producto': 'I9 LIFE SUCUPIRA'}
+2026-05-01 21:59:10,732 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'GRUPO GCF BRASIL', 'producto': 'I9 SUN'}
+2026-05-01 21:59:10,732 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'HALEON', 'producto': 'LACTICARE'}
+2026-05-01 21:59:10,733 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'HALEON', 'producto': 'UREMOL'}
+2026-05-01 21:59:10,733 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'INDAFARMA', 'producto': 'INDAFARMA'}
+2026-05-01 21:59:10,734 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ISDIN', 'producto': 'TATOO'}
+2026-05-01 21:59:10,734 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ITACE', 'producto': 'VASELINA ICAR'}
+2026-05-01 21:59:10,734 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'KENVUE', 'producto': 'JOHNSONS SERUM'}
+2026-05-01 21:59:10,735 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'KENVUE', 'producto': 'NEUTROGENA ULTRA SHE'}
+2026-05-01 21:59:10,735 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LA DERMINE', 'producto': 'LA DERMINE'}
+2026-05-01 21:59:10,735 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LA VITTA COSMETIC', 'producto': 'STUDIO 35'}
+2026-05-01 21:59:10,736 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LABEL', 'producto': 'PROTETOR SOLAR SUN'}
+2026-05-01 21:59:10,736 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LAPON', 'producto': 'OLEO DE AMENDOAS LPN'}
+2026-05-01 21:59:10,737 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LIFAR', 'producto': 'OLEO AMENDOAS VIVAZ'}
+2026-05-01 21:59:10,737 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LODORA COSMETICOS', 'producto': 'FRESHALIV'}
+2026-05-01 21:59:10,738 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LOREAL', 'producto': 'LANCOME'}
+2026-05-01 21:59:10,739 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'PROBIOM LUPIN SKIN'}
+2026-05-01 21:59:10,739 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'XEROREPAIR LUPIN SKIN'}
+2026-05-01 21:59:10,739 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'LUVIK DO BRASIL', 'producto': 'VITACHARM'}
+2026-05-01 21:59:10,739 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MADREVITA', 'producto': 'MADREVITA'}
+2026-05-01 21:59:10,740 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MAEBE DERMOCOSMETICOS', 'producto': 'MAEBE MAMAE'}
+2026-05-01 21:59:10,740 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MANTECORP FARMASA', 'producto': 'EPIDRAT SENSI'}
+2026-05-01 21:59:10,740 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MANTECORP FARMASA', 'producto': 'THIOMUCASE'}
+2026-05-01 21:59:10,741 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MANTECORP SKINCARE', 'producto': 'HIDRAMAMY'}
+2026-05-01 21:59:10,741 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MASSIME', 'producto': 'MAXSOL'}
+2026-05-01 21:59:10,741 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MATO DOCE COSMETICA ARTESANAL', 'producto': 'MATO DOCE REVIGORANTE'}
+2026-05-01 21:59:10,741 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MAXTRATTO COSMETICOS', 'producto': 'DISMAPP'}
+2026-05-01 21:59:10,742 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MBOAH COSMETICOS', 'producto': 'O MATADOR DO SERTAO'}
+2026-05-01 21:59:10,742 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MCG LAB FARMACEUT', 'producto': 'CONSECRET'}
+2026-05-01 21:59:10,742 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MEDLEVENSOHN', 'producto': 'VEROM'}
+2026-05-01 21:59:10,742 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MERCOFARMA', 'producto': 'OLEO DE AMENDOAS AMOR'}
+2026-05-01 21:59:10,742 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MSD', 'producto': 'GERARE'}
+2026-05-01 21:59:10,742 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MUY AMOUR', 'producto': 'MUY AMOUR'}
+2026-05-01 21:59:10,742 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'MUZA & CIA', 'producto': 'SAO LUIZ'}
+2026-05-01 21:59:10,743 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'NATI COSMETICA', 'producto': 'NATI'}
+2026-05-01 21:59:10,743 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'NATUPELE', 'producto': 'ESTRILESS'}
+2026-05-01 21:59:10,743 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'NATUPELE', 'producto': 'SOLESS'}
+2026-05-01 21:59:10,743 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'NATURA', 'producto': 'NATURA FOTOEQUILIBRIO'}
+2026-05-01 21:59:10,744 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'NATURA', 'producto': 'NATURA NATURE'}
+2026-05-01 21:59:10,744 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'NATURALLY', 'producto': 'SEBO DE CARNEIRO NAR'}
+2026-05-01 21:59:10,745 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'NESTI DANTE', 'producto': 'HORTO BOTANICO'}
+2026-05-01 21:59:10,745 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ORTHO PAUHER', 'producto': 'SABONETE FUNCIONAL'}
+2026-05-01 21:59:10,746 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL AGE'}
+2026-05-01 21:59:10,747 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL HOMEM'}
+2026-05-01 21:59:10,747 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO DAUF ULTRA HID'}
+2026-05-01 21:59:10,747 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO DERME DAUF'}
+2026-05-01 21:59:10,748 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO SERUM'}
+2026-05-01 21:59:10,748 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'OLEO ESSENCIAL DAUF'}
+2026-05-01 21:59:10,748 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PANVEL', 'producto': 'NA BRISA PVL'}
+2026-05-01 21:59:10,749 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PANVEL', 'producto': 'PANVEL LOCAO HIDRATANTE'}
+2026-05-01 21:59:10,749 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PARENTEX', 'producto': 'ANJINHO'}
+2026-05-01 21:59:10,749 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PARIS PERFUMES', 'producto': 'PARIS SECRETS'}
+2026-05-01 21:59:10,749 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PAYOT', 'producto': 'PAYOT'}
+2026-05-01 21:59:10,749 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PHARMATURA', 'producto': 'ALIVIAH'}
+2026-05-01 21:59:10,750 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA CREME'}
+2026-05-01 21:59:10,750 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA HIDRATANTE'}
+2026-05-01 21:59:10,750 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'POUPAFARMA', 'producto': 'POUPAFARMA'}
+2026-05-01 21:59:10,750 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PROMEX COMERCIO', 'producto': 'OCEANE BATH & BODY'}
+2026-05-01 21:59:10,751 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'PROMOFARMA', 'producto': 'DERMACITA'}
+2026-05-01 21:59:10,751 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'RAIA DROGASIL', 'producto': 'NEEDS DERMOPROTETORA'}
+2026-05-01 21:59:10,751 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'RAIA DROGASIL', 'producto': 'NEEDS PERFUMADOS'}
+2026-05-01 21:59:10,752 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'RAIA DROGASIL', 'producto': 'PLUII'}
+2026-05-01 21:59:10,752 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'RAIA DROGASIL', 'producto': 'VEGAN BY NEEDS'}
+2026-05-01 21:59:10,753 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'RAYMUNDO DA FONTE', 'producto': 'EVEN LUXO'}
+2026-05-01 21:59:10,753 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'RELVAZON', 'producto': 'RELVAZON'}
+2026-05-01 21:59:10,753 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC PRO CALM'}
+2026-05-01 21:59:10,754 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SANOFI', 'producto': 'CONFIARE PREVENT'}
+2026-05-01 21:59:10,754 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SANOFI', 'producto': 'HIDRASTAR'}
+2026-05-01 21:59:10,754 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SENSCIENCE', 'producto': 'SENSCIENCE'}
+2026-05-01 21:59:10,754 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SGM IND DE COSM', 'producto': 'VINI LADY PROTETOR SOLAR'}
+2026-05-01 21:59:10,755 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SHISEIDO', 'producto': 'SHISEIDO PROTETOR SOLAR'}
+2026-05-01 21:59:10,755 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SIDNEY OLIVEIRA', 'producto': 'ARTRI-FLEX'}
+2026-05-01 21:59:10,755 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SIDNEY OLIVEIRA', 'producto': 'RAHDAPANTOL DERMA'}
+2026-05-01 21:59:10,755 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SIMPLE ORGANIC', 'producto': 'HIDRATANTE ZERO'}
+2026-05-01 21:59:10,755 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SKELT COSMETICOS', 'producto': 'SKELT COFFE SCRUB'}
+2026-05-01 21:59:10,755 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SOUVIE', 'producto': 'SOUVIE'}
+2026-05-01 21:59:10,755 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SRI SRI TATTVA', 'producto': 'SRI SRI'}
+2026-05-01 21:59:10,756 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'SRI SRI TATTVA', 'producto': 'SRI SRI SABONETE'}
+2026-05-01 21:59:10,756 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'THE BODY SHOP', 'producto': 'THE BODY SHOP'}
+2026-05-01 21:59:10,756 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'THERASKIN', 'producto': 'EMODERM'}
+2026-05-01 21:59:10,757 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'THERASKIN', 'producto': 'KALIMA'}
+2026-05-01 21:59:10,757 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'TOTAL QUIMICA', 'producto': 'PLUSH'}
+2026-05-01 21:59:10,757 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'TRES JOLIE', 'producto': 'TRES JOLIE'}
+2026-05-01 21:59:10,757 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'UBER PHARMA', 'producto': 'POMADA VERDE AKABI'}
+2026-05-01 21:59:10,757 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'UCI FARMA', 'producto': 'CLOSTEMIN'}
+2026-05-01 21:59:10,757 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'UNIAO QUIMICA', 'producto': 'DERMOPANTOL'}
+2026-05-01 21:59:10,758 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'UNILEVER', 'producto': 'LUX SUAVE'}
+2026-05-01 21:59:10,758 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'UNILEVER', 'producto': 'VINOLIA'}
+2026-05-01 21:59:10,758 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'CELACYN'}
+2026-05-01 21:59:10,758 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'HYDRACELL'}
+2026-05-01 21:59:10,758 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'LUMISKIN'}
+2026-05-01 21:59:10,758 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'VICHY', 'producto': 'VICHY CELLUDESTOCK'}
+2026-05-01 21:59:10,758 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'VITACELULAS', 'producto': 'VITACELULAS'}
+2026-05-01 21:59:10,759 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'VITADERM', 'producto': 'VITADERM'}
+2026-05-01 21:59:10,759 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'VITAMEDIC', 'producto': 'VIT PANTENOL'}
+2026-05-01 21:59:10,759 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'YEVA COSMETIQUES', 'producto': 'YEVA'}
+2026-05-01 21:59:10,759 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ZANIN PHARMA', 'producto': 'BLOCKSUN'}
+2026-05-01 21:59:10,759 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ZANIN PHARMA', 'producto': 'BLOCKSUN REFRESH'}
+2026-05-01 21:59:10,759 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'CORPORALES', 'laboratorio': 'ZANIN PHARMA', 'producto': 'NUDE BRONZE'}
+2026-05-01 21:59:10,760 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ACHE', 'producto': 'ESSENCELE'}
+2026-05-01 21:59:10,760 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ACHE', 'producto': 'KIT PURIANCE+PROFUSE'}
+2026-05-01 21:59:10,760 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ACHE', 'producto': 'PROFUSE HIDRADEEP'}
+2026-05-01 21:59:10,760 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADA TINA', 'producto': 'ADA TINA C 20 ADT'}
+2026-05-01 21:59:10,760 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADA TINA', 'producto': 'GLYCOLIC K'}
+2026-05-01 21:59:10,761 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADA TINA', 'producto': 'NORMALIZE FT'}
+2026-05-01 21:59:10,761 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADA TINA', 'producto': 'NORMALIZE MATTE'}
+2026-05-01 21:59:10,761 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADA TINA', 'producto': 'RESVERATROL ADT'}
+2026-05-01 21:59:10,762 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'ADCOS DENSE FILLER'}
+2026-05-01 21:59:10,762 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'ADCOS HYALU GF'}
+2026-05-01 21:59:10,762 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'ADCOS NANO'}
+2026-05-01 21:59:10,762 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'ADCOS REFIN CLINIC CARE'}
+2026-05-01 21:59:10,763 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'DERMA COMPLEX'}
+2026-05-01 21:59:10,763 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'MASCARA TENSORA DOURADA'}
+2026-05-01 21:59:10,763 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'REDUXCEL'}
+2026-05-01 21:59:10,763 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADCOS', 'producto': 'SENSI SOLUTION'}
+2026-05-01 21:59:10,763 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ADV FARMA', 'producto': 'EPYDERMY SUN'}
+2026-05-01 21:59:10,764 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ALERGOSHOP', 'producto': 'ALERGOSHOP'}
+2026-05-01 21:59:10,764 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ALUR MEDICAL', 'producto': 'NANO BOOST'}
+2026-05-01 21:59:10,764 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ANNA PEGOVA', 'producto': 'ANTI AGE PLURI ACTIVE'}
+2026-05-01 21:59:10,764 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ANTONIO PUIG SA', 'producto': 'CLARINS MEN'}
+2026-05-01 21:59:10,764 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'APEX', 'producto': 'PERFECT SUN APX'}
+2026-05-01 21:59:10,764 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ARAGO', 'producto': 'ACNESHOCK'}
+2026-05-01 21:59:10,765 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ARAGO', 'producto': 'GLYCOPEEL'}
+2026-05-01 21:59:10,765 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ARAGO', 'producto': 'LINEBOOSTER'}
+2026-05-01 21:59:10,765 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ARAGO', 'producto': 'SERUM NOITE CLAREADOR'}
+2026-05-01 21:59:10,765 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ARCHY', 'producto': 'ARCHY MAKE UP'}
+2026-05-01 21:59:10,765 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ASSIFARMA', 'producto': 'ZETA BLOCK'}
+2026-05-01 21:59:10,765 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENCA', 'producto': 'AVENCA ACNEED'}
+2026-05-01 21:59:10,766 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENE', 'producto': 'AVENE COLD CREAM'}
+2026-05-01 21:59:10,766 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENE', 'producto': 'CLEANANCE EXPERT'}
+2026-05-01 21:59:10,766 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENE', 'producto': 'D-PIGMENT'}
+2026-05-01 21:59:10,766 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENE', 'producto': 'ELUAGE'}
+2026-05-01 21:59:10,767 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENE', 'producto': 'HYDRANCE OPTIMALE'}
+2026-05-01 21:59:10,767 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENE', 'producto': 'SERENAGE'}
+2026-05-01 21:59:10,767 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVENE', 'producto': 'YSTHEAL'}
+2026-05-01 21:59:10,768 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'AVON', 'producto': 'AVON RENEW'}
+2026-05-01 21:59:10,768 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BAYER CONS.HEALTH', 'producto': 'DARDIA'}
+2026-05-01 21:59:10,769 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BEAUTS UP', 'producto': 'BEAUTS UP'}
+2026-05-01 21:59:10,769 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BEIERSDORF', 'producto': 'EUCERIN AQUAPORIN'}
+2026-05-01 21:59:10,769 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BEL COL', 'producto': 'SOLECTIV'}
+2026-05-01 21:59:10,770 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BELLIZ', 'producto': 'BELLIZ'}
+2026-05-01 21:59:10,770 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BENTON', 'producto': 'BENTON'}
+2026-05-01 21:59:10,770 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BIOAGE', 'producto': 'BIOAGE'}
+2026-05-01 21:59:10,770 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BIOAGE', 'producto': 'BIOAGE BIO SENSI'}
+2026-05-01 21:59:10,771 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BIOAGE', 'producto': 'BIOAGE BIO SUNBLOCK'}
+2026-05-01 21:59:10,771 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BIODERMA', 'producto': 'SEBIUM AKN'}
+2026-05-01 21:59:10,772 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BIODERMA', 'producto': 'SEBIUM HYDRA'}
+2026-05-01 21:59:10,772 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BIOLAB', 'producto': 'ACNE CARE'}
+2026-05-01 21:59:10,772 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BIOZENTHI', 'producto': 'BIOZENTHI'}
+2026-05-01 21:59:10,772 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BOURJOIS', 'producto': 'BOURJOIS'}
+2026-05-01 21:59:10,773 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BOURJOIS', 'producto': 'MAXI FORMAT'}
+2026-05-01 21:59:10,773 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'BOUTIQUE DE AROMAS', 'producto': 'BOU COSMETICOS'}
+2026-05-01 21:59:10,773 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'CHRISTIAN DIOR SE', 'producto': 'DIOR'}
+2026-05-01 21:59:10,774 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'CHRYSALIS COSMETICS', 'producto': 'CHRYSALIS'}
+2026-05-01 21:59:10,774 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'CLINIQUE', 'producto': 'CLINIQUE PROTETOR SOLAR'}
+2026-05-01 21:59:10,774 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'CONDOR', 'producto': 'CONDOR'}
+2026-05-01 21:59:10,775 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'COTY', 'producto': 'LEITE DE COLONIA'}
+2026-05-01 21:59:10,775 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DARROW', 'producto': 'SUNSAFE'}
+2026-05-01 21:59:10,775 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMA FINE', 'producto': 'NEW BLOCK PC'}
+2026-05-01 21:59:10,776 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMA FINE', 'producto': 'NEW BLOCK PLUS'}
+2026-05-01 21:59:10,776 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'AGE AWAY'}
+2026-05-01 21:59:10,776 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'BEAUTY 4 FUN'}
+2026-05-01 21:59:10,777 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'COLLAGEN AGE'}
+2026-05-01 21:59:10,777 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE BEAUTY 4 FU'}
+2026-05-01 21:59:10,777 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE BLACK PEARL'}
+2026-05-01 21:59:10,778 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE BLOCK COMPACT'}
+2026-05-01 21:59:10,778 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'HIDRACARE'}
+2026-05-01 21:59:10,778 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAGE', 'producto': 'TRILIFT'}
+2026-05-01 21:59:10,779 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMATTIVE COSMETICOS', 'producto': 'DERMATTIVE DTT'}
+2026-05-01 21:59:10,779 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMATUS', 'producto': 'DERMATUS'}
+2026-05-01 21:59:10,779 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMATUS', 'producto': 'DERMATUS BEATRIZ BRENNER'}
+2026-05-01 21:59:10,779 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMATUS', 'producto': 'PHOTOPLUS'}
+2026-05-01 21:59:10,779 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMAZON COS LTDA', 'producto': 'DEMAZON'}
+2026-05-01 21:59:10,779 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DERMONANO', 'producto': 'DERMONANO'}
+2026-05-01 21:59:10,780 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DORALICE MAKE UP', 'producto': 'DORALICE MASCARA'}
+2026-05-01 21:59:10,780 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'DORALICE MAKE UP', 'producto': 'DORALICE SERUM'}
+2026-05-01 21:59:10,780 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ELEMENTO MINERAL', 'producto': 'ELEMENTO MINERAL'}
+2026-05-01 21:59:10,780 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ELOISA MEDINA COSMETICOS', 'producto': 'ELOISA MEDINA PLASTICA NATURAL'}
+2026-05-01 21:59:10,780 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'EMS', 'producto': 'CALADRYL'}
+2026-05-01 21:59:10,780 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ESSITY', 'producto': 'LADYFREE'}
+2026-05-01 21:59:10,781 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'EXPANSCIENCE', 'producto': 'HYDRA BEBE'}
+2026-05-01 21:59:10,781 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FARMAX', 'producto': 'LENCO MICELAR HIDRADERM'}
+2026-05-01 21:59:10,781 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FASHION COSMETICO', 'producto': 'AGUA MICELAR FASHION'}
+2026-05-01 21:59:10,782 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FENZZA', 'producto': 'FENZZA MASK'}
+2026-05-01 21:59:10,782 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FENZZA', 'producto': 'FENZZA THE EXPERIENCE'}
+2026-05-01 21:59:10,782 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FQM GRUPO', 'producto': 'ENDOCARE'}
+2026-05-01 21:59:10,782 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FQM GRUPO', 'producto': 'ENDOCARE TENSAGE'}
+2026-05-01 21:59:10,782 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FQM GRUPO', 'producto': 'HELIOCARE'}
+2026-05-01 21:59:10,782 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FRANCEFARMA', 'producto': 'VIDALIA'}
+2026-05-01 21:59:10,783 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FUTURA BIOTECH', 'producto': 'LINEA PELLE'}
+2026-05-01 21:59:10,783 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'FW IND HIGIENE', 'producto': 'FEELCLEAN'}
+2026-05-01 21:59:10,783 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'GALDERMA', 'producto': 'ALERGIBON'}
+2026-05-01 21:59:10,783 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'GALDERMA', 'producto': 'AVENO'}
+2026-05-01 21:59:10,783 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'GALDERMA', 'producto': 'IONAX SCRUB'}
+2026-05-01 21:59:10,784 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'GLENMARK', 'producto': 'SUNDERM'}
+2026-05-01 21:59:10,784 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'GRUPO GCF BRASIL', 'producto': 'I9 MASK'}
+2026-05-01 21:59:10,785 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'GSK PHARMA', 'producto': 'ANSOLAR'}
+2026-05-01 21:59:10,785 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'HEARST', 'producto': 'HIGISEPS'}
+2026-05-01 21:59:10,785 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'HYGIELINE', 'producto': 'VIP WIPES'}
+2026-05-01 21:59:10,786 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'KAO', 'producto': 'BIORE MORNING'}
+2026-05-01 21:59:10,786 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'KENVUE', 'producto': 'NEUTROGENA HEALT SKIN'}
+2026-05-01 21:59:10,786 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'KENVUE', 'producto': 'NEUTROGENA ULTRA GENT'}
+2026-05-01 21:59:10,787 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'KENVUE', 'producto': 'ROC COMPLETE LIFT'}
+2026-05-01 21:59:10,787 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'EFFACLAR KIT MAT+SAB+ANTHELIOS'}
+2026-05-01 21:59:10,787 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'REDERMIC+'}
+2026-05-01 21:59:10,787 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'SEROZINC'}
+2026-05-01 21:59:10,787 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'SUBSTIANE+'}
+2026-05-01 21:59:10,787 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LA VITTA COSMETIC', 'producto': 'LATIKA MASK SHEET'}
+2026-05-01 21:59:10,788 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LAB ST IVES', 'producto': 'ST.IVES'}
+2026-05-01 21:59:10,788 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LC PRODUTOS', 'producto': 'PRIMODERME'}
+2026-05-01 21:59:10,788 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LEGRAND', 'producto': 'PROPANTOL DERMA'}
+2026-05-01 21:59:10,789 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LIBBS', 'producto': 'UMIDITA'}
+2026-05-01 21:59:10,789 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LOREAL', 'producto': 'AGE PERFECT'}
+2026-05-01 21:59:10,789 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LOREAL', 'producto': 'LANCOME ABSOLUE'}
+2026-05-01 21:59:10,790 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LOREAL', 'producto': 'LANCOME PURE FOCUS'}
+2026-05-01 21:59:10,790 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LOREAL', 'producto': 'LANCOME VISIONNAIRE'}
+2026-05-01 21:59:10,790 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LUISANCE', 'producto': 'LUISANCE'}
+2026-05-01 21:59:10,791 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LUISANCE', 'producto': 'LUISANCE SERUM'}
+2026-05-01 21:59:10,791 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'PROBIOM LUPIN SKIN'}
+2026-05-01 21:59:10,792 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'PROPIACNE LUPIN SKIN'}
+2026-05-01 21:59:10,792 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'XEROREPAIR LUPIN SKIN'}
+2026-05-01 21:59:10,792 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MAC COSMETICS', 'producto': 'MAC LABIAL'}
+2026-05-01 21:59:10,792 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MAEBE DERMOCOSMETICOS', 'producto': 'MAEBE MAMAE'}
+2026-05-01 21:59:10,792 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MANTECORP FARMASA', 'producto': 'URBY UV'}
+2026-05-01 21:59:10,793 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MANTECORP SKINCARE', 'producto': 'URBY'}
+2026-05-01 21:59:10,793 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MARCHETTI', 'producto': 'MARCHETTI SABONETE DEMAQUILANTE'}
+2026-05-01 21:59:10,793 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MARCHETTI', 'producto': 'PROTETOR SOLAR MARCHETTI'}
+2026-05-01 21:59:10,793 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MAXXMANIA', 'producto': "SOPHI'S LADY"}
+2026-05-01 21:59:10,793 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MEDIX PRO', 'producto': 'MEDIX PRO'}
+2026-05-01 21:59:10,793 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MEGALABS', 'producto': 'SUNMAX FAMILY+SENS'}
+2026-05-01 21:59:10,794 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MENELA COSMETICOS', 'producto': 'MENELA'}
+2026-05-01 21:59:10,794 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MIRIAN', 'producto': 'MAKIE BOOSTING'}
+2026-05-01 21:59:10,794 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MIRIAN', 'producto': 'MAKIE HYALURONIC'}
+2026-05-01 21:59:10,794 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MOLIKA', 'producto': 'MOLIKA MLK'}
+2026-05-01 21:59:10,794 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MOPH DERME', 'producto': 'SUNBRISA'}
+2026-05-01 21:59:10,794 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'MUNDIAL', 'producto': 'IMPALA LENCOS DE LIMPEZA'}
+2026-05-01 21:59:10,794 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NATULAB', 'producto': 'ACNELIV'}
+2026-05-01 21:59:10,795 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NATUPHITUS', 'producto': 'CREME FACIAL NPS'}
+2026-05-01 21:59:10,795 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NATUPHITUS', 'producto': 'FACTOR NMF'}
+2026-05-01 21:59:10,795 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NATUPHITUS', 'producto': 'NATUPHITUS'}
+2026-05-01 21:59:10,795 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NATUPHITUS', 'producto': 'UP SKIN'}
+2026-05-01 21:59:10,796 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NATURA', 'producto': 'NATURA FOTOEQUILIBRIO'}
+2026-05-01 21:59:10,796 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NATURA', 'producto': 'TEZ'}
+2026-05-01 21:59:10,796 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NESTLE', 'producto': 'PURAVIDA'}
+2026-05-01 21:59:10,796 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NESTLE', 'producto': 'SUNDOWN NATURALS'}
+2026-05-01 21:59:10,796 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'NUPILL', 'producto': 'NUPILL PROTETOR SOLAR'}
+2026-05-01 21:59:10,797 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO DAUF ANTIRUGAS'}
+2026-05-01 21:59:10,797 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO DAUF CLAREADOR'}
+2026-05-01 21:59:10,797 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PARFUMS DE FRANCE', 'producto': 'PARIS ELYSEES'}
+2026-05-01 21:59:10,797 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PAYOT', 'producto': 'PAYOT PRINCIER'}
+2026-05-01 21:59:10,797 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PAYOT', 'producto': 'PAYOT RAYS'}
+2026-05-01 21:59:10,797 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PAYOT', 'producto': 'PAYOT TONICO'}
+2026-05-01 21:59:10,798 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PIERRE FABRE', 'producto': 'LEUCODIN'}
+2026-05-01 21:59:10,798 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PLK LOG COMERCIAL E IMPORTADORA', 'producto': 'SESDERMA C-VIT'}
+2026-05-01 21:59:10,798 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PLK LOG COMERCIAL E IMPORTADORA', 'producto': 'SESDERMA HIDRAVEN'}
+2026-05-01 21:59:10,799 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA'}
+2026-05-01 21:59:10,799 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA ANTIRRUGAS'}
+2026-05-01 21:59:10,799 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA DEMAQUILANTE'}
+2026-05-01 21:59:10,799 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA ESFOLIANTE'}
+2026-05-01 21:59:10,799 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA ESP. REGENERADORA'}
+2026-05-01 21:59:10,799 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA TONICO'}
+2026-05-01 21:59:10,800 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PROMEX COMERCIO', 'producto': 'OCEANE SCRUB'}
+2026-05-01 21:59:10,800 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'PROMEX COMERCIO', 'producto': 'OCEANE TONICO'}
+2026-05-01 21:59:10,801 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'QUEM DISSE BERENICE?', 'producto': 'QDB'}
+2026-05-01 21:59:10,801 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'RAIA DROGASIL', 'producto': 'NEEDS VEGAN BY TEA TREE'}
+2026-05-01 21:59:10,801 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'RAIA DROGASIL', 'producto': 'TRISS LENCOS'}
+2026-05-01 21:59:10,801 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'RAIA DROGASIL', 'producto': 'VEGAN BY NEEDS'}
+2026-05-01 21:59:10,802 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'RICOSTI COSMETICO', 'producto': 'RICOSTI'}
+2026-05-01 21:59:10,802 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'RIVKA', 'producto': 'MEU SOL'}
+2026-05-01 21:59:10,802 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC C-SUPERIEUR'}
+2026-05-01 21:59:10,802 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC PRO DEFINE'}
+2026-05-01 21:59:10,802 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC PRO RENOVE'}
+2026-05-01 21:59:10,803 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ROHTO MENTHOLATUM', 'producto': 'PERFECTA'}
+2026-05-01 21:59:10,803 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SALLVE', 'producto': 'SALLVE BALSAMO DEMAQUILANTE'}
+2026-05-01 21:59:10,803 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SALLVE', 'producto': 'SALLVE BRUMA'}
+2026-05-01 21:59:10,803 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SALLVE', 'producto': 'SALLVE MINI KIT ANTIACNE'}
+2026-05-01 21:59:10,803 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SGM IND DE COSM', 'producto': 'VINI LADY PROTETOR SOLAR'}
+2026-05-01 21:59:10,804 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SHISEIDO', 'producto': 'SHISEIDO BIO-PERFORMANCE'}
+2026-05-01 21:59:10,804 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SHISEIDO', 'producto': 'SHISEIDO ESSENTIALS'}
+2026-05-01 21:59:10,804 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SHOCK', 'producto': 'SHOCK COLOR STICK'}
+2026-05-01 21:59:10,804 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SIDNEY OLIVEIRA', 'producto': 'I9 SKIN'}
+2026-05-01 21:59:10,804 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SIMOES', 'producto': 'ALCACHOFRA SMO'}
+2026-05-01 21:59:10,804 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SIMPLE ORGANIC', 'producto': 'SENSITIVE SKIN'}
+2026-05-01 21:59:10,805 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SIMPLE ORGANIC', 'producto': 'SERUM TIMELESS SKIN'}
+2026-05-01 21:59:10,805 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SKINCEUTICALS', 'producto': 'AGE INTERRUMPER'}
+2026-05-01 21:59:10,805 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SKINCEUTICALS', 'producto': 'HYDRATING B5'}
+2026-05-01 21:59:10,805 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SKINCEUTICALS', 'producto': 'LHA CLEASING'}
+2026-05-01 21:59:10,805 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SKINCEUTICALS', 'producto': 'PHYSICAL FUSION'}
+2026-05-01 21:59:10,806 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SKINCEUTICALS', 'producto': 'SHEER PHYSICAL'}
+2026-05-01 21:59:10,807 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SKINLITE', 'producto': 'SKINLITE'}
+2026-05-01 21:59:10,807 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'SOUVIE', 'producto': 'SOUVIE'}
+2026-05-01 21:59:10,807 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'TALIKA', 'producto': 'TALIKA'}
+2026-05-01 21:59:10,807 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'TBA COSMETICOS', 'producto': 'MAKELOVERS'}
+2026-05-01 21:59:10,807 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'THERASKIN', 'producto': 'SOLIALE'}
+2026-05-01 21:59:10,808 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'THERASKIN', 'producto': 'VITALISS'}
+2026-05-01 21:59:10,808 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'TURMA DO SONINHO', 'producto': 'HYGIELINE'}
+2026-05-01 21:59:10,808 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'UNILEVER', 'producto': 'PONDS'}
+2026-05-01 21:59:10,808 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'GRAMACYN'}
+2026-05-01 21:59:10,808 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'SKIN SAVERS'}
+2026-05-01 21:59:10,809 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK ACNECLEANSER'}
+2026-05-01 21:59:10,809 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK DERMAPLUMP SKIN'}
+2026-05-01 21:59:10,809 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK DESIRE SCULPT'}
+2026-05-01 21:59:10,809 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK DNA REPAIR CREAM'}
+2026-05-01 21:59:10,809 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK FACE UP LIFT'}
+2026-05-01 21:59:10,810 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK PERFECT BALANCE'}
+2026-05-01 21:59:10,810 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK PERFECT HYD CAL'}
+2026-05-01 21:59:10,810 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK PERFECT RICE SCR'}
+2026-05-01 21:59:10,810 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK PRECIOUS INFUSI'}
+2026-05-01 21:59:10,810 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK RETINOL ANTIOX'}
+2026-05-01 21:59:10,811 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'V V INDUSTRIA E COMERCIO DE COSMETICO', 'producto': 'MAKING EASY'}
+2026-05-01 21:59:10,811 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'VICAE COSMETIC', 'producto': 'SOLCARE'}
+2026-05-01 21:59:10,811 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'VICHY', 'producto': 'NEOVADIOL NOITE'}
+2026-05-01 21:59:10,811 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'VICHY', 'producto': 'VICHY DERMABLEND'}
+2026-05-01 21:59:10,811 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'VICHY', 'producto': 'VICHY HOMME'}
+2026-05-01 21:59:10,811 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'VIVAI', 'producto': 'VIVAI'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'FACIALES', 'laboratorio': 'ZANPHY', 'producto': 'CHANDELLE'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ACHE', 'producto': 'CAPEL'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ACHE', 'producto': 'ESSENCELE'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ACHE', 'producto': 'ESSENCELE FILLE.R'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ACTUS', 'producto': 'LANCBIO'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ACTUS', 'producto': 'MEU PODEROSO POTAO'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADA TINA', 'producto': 'ADA TINA C 20 ADT'}
+2026-05-01 21:59:10,812 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADA TINA', 'producto': 'ADA TINA COLLAGEN PEPTIDE'}
+2026-05-01 21:59:10,813 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADA TINA', 'producto': 'ADA TINA RETINTENSE 5.0'}
+2026-05-01 21:59:10,813 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADA TINA', 'producto': 'GLYCOLIC K'}
+2026-05-01 21:59:10,813 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADA TINA', 'producto': 'RESVERATROL ADT'}
+2026-05-01 21:59:10,813 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADCOS', 'producto': 'ADCOS DENSE FILLER'}
+2026-05-01 21:59:10,813 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADCOS', 'producto': 'CELL COMPLEX'}
+2026-05-01 21:59:10,813 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADCOS', 'producto': 'FILLER UP'}
+2026-05-01 21:59:10,814 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ADCOS', 'producto': 'HIDRADEFENSE'}
+2026-05-01 21:59:10,814 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AKLA IND COSM.LTD', 'producto': 'PINAPOW'}
+2026-05-01 21:59:10,814 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AKLA IND COSM.LTD', 'producto': 'SHREK'}
+2026-05-01 21:59:10,814 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AKLA IND COSM.LTD', 'producto': 'SPIDER MAN AKL'}
+2026-05-01 21:59:10,815 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAHAIR', 'producto': 'ALFAHAIR'}
+2026-05-01 21:59:10,815 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'ALTA MODA ALERTA AMARELO'}
+2026-05-01 21:59:10,815 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'ALTA MODA ALERTA VERMELHO'}
+2026-05-01 21:59:10,815 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'IL SALONE'}
+2026-05-01 21:59:10,815 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'MAB GO STYLE'}
+2026-05-01 21:59:10,816 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'MIDOLLO'}
+2026-05-01 21:59:10,816 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'NUTRI SEDUCTION'}
+2026-05-01 21:59:10,816 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'SALONE'}
+2026-05-01 21:59:10,816 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALFAPARF', 'producto': 'STILO MEN'}
+2026-05-01 21:59:10,816 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ALICORP', 'producto': 'PLUSBELLE ALP'}
+2026-05-01 21:59:10,816 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AMAVIA COSMETICOS', 'producto': 'ENERGY COMPLEX'}
+2026-05-01 21:59:10,816 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AMBAR PROFISSIONAL', 'producto': 'MONOVIT PRO'}
+2026-05-01 21:59:10,817 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AMEND', 'producto': 'AMEND DISCIPLINE LISS'}
+2026-05-01 21:59:10,818 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AMEND', 'producto': 'AMEND SPECIALIST BLONDE'}
+2026-05-01 21:59:10,818 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AMEND', 'producto': 'FICA A DICA'}
+2026-05-01 21:59:10,818 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AMEND', 'producto': 'HAIR DRY'}
+2026-05-01 21:59:10,818 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ANTONIO PUIG SA', 'producto': 'CLARINS MEN'}
+2026-05-01 21:59:10,818 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ARAGO', 'producto': 'LINEBOOSTER'}
+2026-05-01 21:59:10,818 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ARAGO', 'producto': 'NANODERME'}
+2026-05-01 21:59:10,819 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ARAGO', 'producto': 'PREBIOTICO'}
+2026-05-01 21:59:10,819 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AROMA DO CAMPO', 'producto': 'AROVITAN'}
+2026-05-01 21:59:10,819 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AROMA DO CAMPO', 'producto': 'VITAHAIR AFRO'}
+2026-05-01 21:59:10,819 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ASSIFARMA', 'producto': 'SVEDA HAIR AFRO'}
+2026-05-01 21:59:10,820 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ASSIFARMA', 'producto': 'SVEDA ULTIMATE MEN'}
+2026-05-01 21:59:10,820 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AVENE', 'producto': 'CLEANANCE EXPERT'}
+2026-05-01 21:59:10,820 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AVENE', 'producto': 'D-PIGMENT'}
+2026-05-01 21:59:10,820 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AVENE', 'producto': 'TRIACNEAL'}
+2026-05-01 21:59:10,820 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AVENE', 'producto': 'YSTHEAL'}
+2026-05-01 21:59:10,820 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AVORA', 'producto': 'AVORA'}
+2026-05-01 21:59:10,820 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AVORA', 'producto': 'SPLENDORE'}
+2026-05-01 21:59:10,821 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'AVORA', 'producto': 'VIVE DIEZ'}
+2026-05-01 21:59:10,821 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BARBA FORTE', 'producto': 'BARBA FORTE IRONJACK'}
+2026-05-01 21:59:10,821 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BEAUTECH', 'producto': 'BLOND PLATINUM'}
+2026-05-01 21:59:10,821 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BEAUTS UP', 'producto': 'BEAUTS UP'}
+2026-05-01 21:59:10,821 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BELFAR', 'producto': 'DERMOLIMP'}
+2026-05-01 21:59:10,822 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BELL SOFT', 'producto': 'BELL SOFT'}
+2026-05-01 21:59:10,822 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BELLIZ', 'producto': 'BELLIZ'}
+2026-05-01 21:59:10,822 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BELTRAT', 'producto': 'BELTRAT TUTANO E MACADAMIA'}
+2026-05-01 21:59:10,822 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BETULLA', 'producto': 'GALINHA PINTADINHA BTL'}
+2026-05-01 21:59:10,822 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO EXTRATUS', 'producto': 'BIO EXTRATUS TUTBOO'}
+2026-05-01 21:59:10,823 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO INSTINTO', 'producto': 'BIO INSTINTO OLEO DE ARGAN'}
+2026-05-01 21:59:10,824 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO INSTINTO', 'producto': 'DESCANSA CABELO'}
+2026-05-01 21:59:10,824 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO INSTINTO', 'producto': 'HIDRA CACHOS'}
+2026-05-01 21:59:10,824 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO INSTINTO', 'producto': 'MARY LIFE'}
+2026-05-01 21:59:10,824 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO INSTINTO', 'producto': 'MARY LIFE BANHO DE VERNIZ'}
+2026-05-01 21:59:10,825 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO INSTINTO', 'producto': 'MARY LIFE CAPIL HORSE'}
+2026-05-01 21:59:10,825 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO INSTINTO', 'producto': 'OLEO DE COCO BIS'}
+2026-05-01 21:59:10,825 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIO LIFE COSMETICOS', 'producto': 'EXTRACTOS PREMIUM'}
+2026-05-01 21:59:10,825 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIODERM COSMETICO', 'producto': 'BIODERM A/Q'}
+2026-05-01 21:59:10,825 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIODERM COSMETICO', 'producto': 'BIODERM LIZZACTION'}
+2026-05-01 21:59:10,825 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIODERM COSMETICO', 'producto': "CABALLO D'ORO"}
+2026-05-01 21:59:10,826 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIODERMA', 'producto': 'SEBIUM HYDRA'}
+2026-05-01 21:59:10,826 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOMARINE', 'producto': 'DERMALIFT'}
+2026-05-01 21:59:10,826 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'BATMAN E PINGUIM'}
+2026-05-01 21:59:10,826 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'DORY'}
+2026-05-01 21:59:10,826 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'FOFY KIDS'}
+2026-05-01 21:59:10,827 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'KAWAII'}
+2026-05-01 21:59:10,827 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'KIT TARTARUGAS NINJA'}
+2026-05-01 21:59:10,827 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'MIRACULOUS LADYBUG'}
+2026-05-01 21:59:10,827 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'MONSTROS'}
+2026-05-01 21:59:10,827 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'SPIDER MAN BI'}
+2026-05-01 21:59:10,827 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'SUPER HERO WOMAN'}
+2026-05-01 21:59:10,827 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BIOTROPIC', 'producto': 'TROLLS'}
+2026-05-01 21:59:10,828 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BOTANIC BRASIL', 'producto': 'DERMACREAM'}
+2026-05-01 21:59:10,828 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BOTHANICO HAIR', 'producto': 'BOTHANICO HAIR COLOR'}
+2026-05-01 21:59:10,828 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'BR SUL', 'producto': 'NOU STYLE'}
+2026-05-01 21:59:10,828 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'C.KAMURA', 'producto': 'C.KAMURA DAILY BALANCE CARE'}
+2026-05-01 21:59:10,828 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CADIVEU', 'producto': 'CADIVEU SOL DO RIO'}
+2026-05-01 21:59:10,829 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CAVIDEU', 'producto': 'CAVIDEU ACAI OIL'}
+2026-05-01 21:59:10,829 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CHARIS', 'producto': 'VIVACITY'}
+2026-05-01 21:59:10,829 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CHRISTIAN DIOR SE', 'producto': 'DIOR'}
+2026-05-01 21:59:10,830 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CIMED', 'producto': 'ACNESKIN'}
+2026-05-01 21:59:10,830 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CORPO DOURADO COS', 'producto': 'THAUXI'}
+2026-05-01 21:59:10,830 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'COSMED', 'producto': 'DISNEY KIDS'}
+2026-05-01 21:59:10,830 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CREIGHTONS', 'producto': 'CREIGHTONS ARGAN SMOOTH'}
+2026-05-01 21:59:10,830 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CREIGHTONS', 'producto': 'CREIGHTONS CLAY BALANCING'}
+2026-05-01 21:59:10,830 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CREIGHTONS', 'producto': 'CREIGHTONS FRIZZ NO MORE'}
+2026-05-01 21:59:10,830 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CREIGHTONS', 'producto': 'CREIGHTONS HYDRATING'}
+2026-05-01 21:59:10,831 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CREIGHTONS', 'producto': 'CREIGHTONS MECILAR'}
+2026-05-01 21:59:10,831 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CREIGHTONS', 'producto': 'CREIGHTONS SUNSHINE BLONDE'}
+2026-05-01 21:59:10,831 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'CREIGHTONS', 'producto': 'CREIGHTONS THE CURL COMPANY'}
+2026-05-01 21:59:10,831 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DEP COSMETICOS', 'producto': 'SOFTFIX BABY'}
+2026-05-01 21:59:10,832 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMACEUTICALS', 'producto': 'DERMACEUTICALS'}
+2026-05-01 21:59:10,832 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'AGE AWAY'}
+2026-05-01 21:59:10,832 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'AGE INVERSE'}
+2026-05-01 21:59:10,832 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'AGE INVERSE NIGHT'}
+2026-05-01 21:59:10,832 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'BEAUTY 4 FUN'}
+2026-05-01 21:59:10,833 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'COLLAGEN AGE'}
+2026-05-01 21:59:10,833 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE ANTIOX'}
+2026-05-01 21:59:10,833 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE BEAUTY 4 FU'}
+2026-05-01 21:59:10,833 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE BLACK PEARL'}
+2026-05-01 21:59:10,833 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE MEN DES'}
+2026-05-01 21:59:10,834 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'DERMAGE VINOCARE'}
+2026-05-01 21:59:10,834 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'HIDRACARE'}
+2026-05-01 21:59:10,834 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'REVOX'}
+2026-05-01 21:59:10,835 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAGE', 'producto': 'TRILIFT'}
+2026-05-01 21:59:10,835 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMAL', 'producto': 'MASCARA FACIAL DR-M'}
+2026-05-01 21:59:10,835 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMATUS', 'producto': 'DERMATUS BEATRIZ BRENNER'}
+2026-05-01 21:59:10,835 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DERMONANO', 'producto': 'DERMONANO'}
+2026-05-01 21:59:10,835 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DHALIAS COSMETICAS', 'producto': 'FIBRO ARQUITETURA CAPILAR'}
+2026-05-01 21:59:10,835 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DIPELLI', 'producto': 'DIPELLI'}
+2026-05-01 21:59:10,836 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DORALICE MAKE UP', 'producto': 'DORALICE MASCARA'}
+2026-05-01 21:59:10,836 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DORALICE MAKE UP', 'producto': 'DORALICE SERUM'}
+2026-05-01 21:59:10,836 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DOYTH COSMETICOS', 'producto': 'DELLA'}
+2026-05-01 21:59:10,836 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DOYTH COSMETICOS', 'producto': 'LA BELLE VEGAN'}
+2026-05-01 21:59:10,837 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DRAGAO QUIMICA', 'producto': 'OGGI'}
+2026-05-01 21:59:10,837 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DRAGAO QUIMICA', 'producto': 'TRATEX'}
+2026-05-01 21:59:10,838 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'DRAGAO QUIMICA', 'producto': 'VITACARPINA'}
+2026-05-01 21:59:10,838 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'EICO ANTIRRESIDUOS'}
+2026-05-01 21:59:10,838 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'EICO CABELOS DOS SONHOS'}
+2026-05-01 21:59:10,838 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'EICO KIDS'}
+2026-05-01 21:59:10,838 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'EICO LISO MAGICO'}
+2026-05-01 21:59:10,839 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'EICO MANDIOCA'}
+2026-05-01 21:59:10,839 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'EICO MIRACLE'}
+2026-05-01 21:59:10,839 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'EICO TEEN'}
+2026-05-01 21:59:10,839 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EICO NEW COSMETIC', 'producto': 'SEDUCTION'}
+2026-05-01 21:59:10,839 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ELEMENTO MINERAL', 'producto': 'ELEMENTO MINERAL'}
+2026-05-01 21:59:10,840 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ELOISA MEDINA COSMETICOS', 'producto': 'ELOISA MEDINA PLASTICA NATURAL'}
+2026-05-01 21:59:10,841 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EMBELLEZE', 'producto': 'MAGIC LISS'}
+2026-05-01 21:59:10,841 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EMBELLEZE', 'producto': 'NOVEX REVITAY'}
+2026-05-01 21:59:10,841 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EMBELLEZE', 'producto': 'NOVEX SOUL TEEN'}
+2026-05-01 21:59:10,842 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EMBELLEZE', 'producto': 'SOU DESSAS'}
+2026-05-01 21:59:10,842 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EUDORA', 'producto': 'SIAGE HYDRA PROTEIN'}
+2026-05-01 21:59:10,843 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'EUROART', 'producto': 'HERBAL ESSENCES EUR'}
+2026-05-01 21:59:10,843 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FARMAERVAS', 'producto': 'BRUNA TAVARES'}
+2026-05-01 21:59:10,843 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FARMAERVAS', 'producto': 'TRACTA'}
+2026-05-01 21:59:10,843 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FARMAX', 'producto': 'HIDRA BABY'}
+2026-05-01 21:59:10,844 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FASHION COSMETICO', 'producto': 'FASHION LISA LISS'}
+2026-05-01 21:59:10,844 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FATTORE COSMETICOS', 'producto': 'LAVATTORE'}
+2026-05-01 21:59:10,844 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FELPS COSMETICOS', 'producto': 'FELPS BANHO DE VERNIZ'}
+2026-05-01 21:59:10,844 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FELPS COSMETICOS', 'producto': 'FELPS GOLD MILLION'}
+2026-05-01 21:59:10,844 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FENZZA', 'producto': 'FENZZA'}
+2026-05-01 21:59:10,845 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FENZZA', 'producto': 'FENZZA MASK'}
+2026-05-01 21:59:10,845 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FIX LOOK', 'producto': 'MISTER JACK'}
+2026-05-01 21:59:10,845 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FLORAMINAS COSMETICOS', 'producto': 'VIOLETTO'}
+2026-05-01 21:59:10,845 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FOREVER COMPANY', 'producto': 'BIO DEFRIZANTE MOLECULAR'}
+2026-05-01 21:59:10,845 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FOREVER COMPANY', 'producto': 'BOMBA DE CHOCOLATE'}
+2026-05-01 21:59:10,845 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FOREVER COMPANY', 'producto': 'INGEL MAXX'}
+2026-05-01 21:59:10,845 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FOREVER COMPANY', 'producto': 'SELANTE'}
+2026-05-01 21:59:10,846 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FQM GRUPO', 'producto': 'ENDOCARE'}
+2026-05-01 21:59:10,846 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FQM GRUPO', 'producto': 'ENDOCARE TENSAGE'}
+2026-05-01 21:59:10,846 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FRANCEFARMA', 'producto': 'INNATU'}
+2026-05-01 21:59:10,846 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FUTURA BIOTECH', 'producto': 'BIO KORTEX'}
+2026-05-01 21:59:10,846 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FUTURA BIOTECH', 'producto': 'FUTURA BIOTECH'}
+2026-05-01 21:59:10,846 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'FUTURA BIOTECH', 'producto': 'MONOLITH'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'G.HAIR', 'producto': 'G.HAIR CRESCE FIOS'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'G.HAIR', 'producto': 'G.HAIR I LOVE BRASIL'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'G10 COSMETICOS', 'producto': 'G10 POMADA MODELADORA'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GALDERMA', 'producto': 'AVENO'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GALDERMA', 'producto': 'IONAX SCRUB'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GLATTEN COSMETICOS', 'producto': 'GLATTEN DOLCE & BANANA'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GLATTEN COSMETICOS', 'producto': 'GLATTEN MALAGUETA'}
+2026-05-01 21:59:10,847 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GRAMENSE DIST PRO', 'producto': 'LA BELLE GSD'}
+2026-05-01 21:59:10,848 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GRIFFUS', 'producto': 'GRIFFUS VOU DE CBA'}
+2026-05-01 21:59:10,848 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GRUPO DPSP', 'producto': 'EVER CARE BABY'}
+2026-05-01 21:59:10,848 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'GRUPO GCF BRASIL', 'producto': 'I9 LIFE'}
+2026-05-01 21:59:10,848 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HAIR EXTRATTUS', 'producto': 'HAIR EXTRATTUS BABOSA'}
+2026-05-01 21:59:10,848 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HAIR FLY', 'producto': 'BLOND MATIZADOR'}
+2026-05-01 21:59:10,849 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HAIR FLY', 'producto': 'BOMBA SOS'}
+2026-05-01 21:59:10,849 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HAIR FLY', 'producto': 'FORCA EXTREMA'}
+2026-05-01 21:59:10,849 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HAIR FLY', 'producto': 'LISO ESPELHADO'}
+2026-05-01 21:59:10,849 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HAIR FLY', 'producto': 'QUERIDOS CACHOS'}
+2026-05-01 21:59:10,849 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HAIR FLY', 'producto': 'SOS BOMB'}
+2026-05-01 21:59:10,850 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HANOVA', 'producto': 'L-EXTREME LIZZ'}
+2026-05-01 21:59:10,850 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HARTS BY HUNGRIA', 'producto': 'BY HUNGRIA'}
+2026-05-01 21:59:10,850 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HEBRON', 'producto': 'TIMYNA'}
+2026-05-01 21:59:10,851 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HELCLA COSMETICOS', 'producto': 'HELCLA'}
+2026-05-01 21:59:10,851 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HERBARIUM', 'producto': 'QUINTAL TRATAMENTO TERRA DE CORES'}
+2026-05-01 21:59:10,852 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'HIDRAN COSMETICOS', 'producto': 'BELLEZZA CACHOS E LISOS'}
+2026-05-01 21:59:10,852 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'INNOVAPHARMA', 'producto': 'RENNOVA'}
+2026-05-01 21:59:10,852 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'INOAR-PROF LTDA', 'producto': "ACQUA D'INOAR"}
+2026-05-01 21:59:10,852 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'INOAR-PROF LTDA', 'producto': 'INOAR HELP'}
+2026-05-01 21:59:10,853 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'JANSSEN-CILAG', 'producto': 'CETONAX SHAMPOO'}
+2026-05-01 21:59:10,853 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'JEQUITI', 'producto': 'JEQUITI FYO PROFISSIONAL'}
+2026-05-01 21:59:10,853 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'JEVIE HEALTH CARE', 'producto': 'MILFILS'}
+2026-05-01 21:59:10,854 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'JOHNSON JOHNSON', 'producto': 'REGAINE'}
+2026-05-01 21:59:10,854 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'JOICO', 'producto': 'JOICO COLOR ENDURE'}
+2026-05-01 21:59:10,854 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'JUSTFORYOU', 'producto': 'ABOUT YOU'}
+2026-05-01 21:59:10,855 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'JUSTFORYOU', 'producto': 'ABOUT YOU BOLD'}
+2026-05-01 21:59:10,855 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KENVUE', 'producto': 'CLEAN&CLEAR'}
+2026-05-01 21:59:10,856 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KENVUE', 'producto': 'NEUTROGENA ULTRA LIGH'}
+2026-05-01 21:59:10,856 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KENVUE', 'producto': 'OGX PACK'}
+2026-05-01 21:59:10,856 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KENVUE', 'producto': 'ROC OIL CONTROL'}
+2026-05-01 21:59:10,856 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KERASTASE', 'producto': 'KERASTASE DISCIPLINE'}
+2026-05-01 21:59:10,856 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KERASTASE', 'producto': 'KERASTASE FRESH AFFAIR'}
+2026-05-01 21:59:10,857 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KERT', 'producto': 'KERAGEN'}
+2026-05-01 21:59:10,857 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KOSTUME', 'producto': 'GLLENDEX BACK BAR'}
+2026-05-01 21:59:10,857 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'KPRICHE', 'producto': 'KPRICHE'}
+2026-05-01 21:59:10,858 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'REDERMIC HYALU'}
+2026-05-01 21:59:10,859 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'REDERMIC XL'}
+2026-05-01 21:59:10,859 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'SEROZINC'}
+2026-05-01 21:59:10,860 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LA ROCHE POSAY', 'producto': 'SUBSTIANE+'}
+2026-05-01 21:59:10,860 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LA SAN DAY PHARMA', 'producto': 'DARTAGNAN'}
+2026-05-01 21:59:10,860 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LAB ST IVES', 'producto': 'ST.IVES'}
+2026-05-01 21:59:10,860 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LABOTRAT COSMETICOS', 'producto': 'ARGILA LABT'}
+2026-05-01 21:59:10,861 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LACAN COSMETICOS', 'producto': 'LACAN LUMINUS PROG'}
+2026-05-01 21:59:10,861 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LACES', 'producto': 'CRIS DIOS'}
+2026-05-01 21:59:10,861 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LCS HAIR CARE', 'producto': 'SHAMPOO LCS'}
+2026-05-01 21:59:10,861 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LIBBS', 'producto': 'LUMIXYL'}
+2026-05-01 21:59:10,861 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LIFAR', 'producto': 'VITA NOVA'}
+2026-05-01 21:59:10,862 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LIGHT HAIR', 'producto': 'LIGHT HAIR INTENSE'}
+2026-05-01 21:59:10,862 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LIMA & PERGHER', 'producto': 'BIOKIDZ'}
+2026-05-01 21:59:10,862 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOCCITANE', 'producto': 'LOCCITANE BAGUNCA'}
+2026-05-01 21:59:10,863 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOLA COSMETCS-PER', 'producto': 'LOLA BEMDITA'}
+2026-05-01 21:59:10,863 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOLA COSMETCS-PER', 'producto': 'LOLA RUIVOSA'}
+2026-05-01 21:59:10,863 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'DULCIA ADVANCED'}
+2026-05-01 21:59:10,864 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'ELSEVE NUTRICAO 10X'}
+2026-05-01 21:59:10,864 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'EVER CREME'}
+2026-05-01 21:59:10,864 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'EVER CURL'}
+2026-05-01 21:59:10,865 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'EVER PURE'}
+2026-05-01 21:59:10,865 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'EXPERT ABSOLUT CON'}
+2026-05-01 21:59:10,865 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'IDADE EXPERT'}
+2026-05-01 21:59:10,865 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'LANCOME ARTLINER'}
+2026-05-01 21:59:10,865 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'LANCOME VISIONNAIRE'}
+2026-05-01 21:59:10,865 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'LOREAL'}
+2026-05-01 21:59:10,865 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'LOREAL MASCARA DETOX'}
+2026-05-01 21:59:10,866 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'PRO FIBER'}
+2026-05-01 21:59:10,866 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LOREAL', 'producto': 'PROFISSIONEL HOMME'}
+2026-05-01 21:59:10,866 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LUMINUS', 'producto': 'LUMINUS'}
+2026-05-01 21:59:10,866 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'PROBIOM LUPIN SKIN'}
+2026-05-01 21:59:10,866 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'PROPIACNE LUPIN SKIN'}
+2026-05-01 21:59:10,866 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LUPIN SKINCIENCE', 'producto': 'RECREXINA LUPIN SKIN'}
+2026-05-01 21:59:10,867 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'LUVIK DO BRASIL', 'producto': 'VITACHARM'}
+2026-05-01 21:59:10,867 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'M S IND PROD DE PERF E COSM', 'producto': 'HIDRATA HAIR'}
+2026-05-01 21:59:10,868 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MAC COSMETICS', 'producto': 'MAC LABIAL'}
+2026-05-01 21:59:10,868 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MADAMELIS', 'producto': 'MADAMELIS ULTIMATE'}
+2026-05-01 21:59:10,868 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MAEBE DERMOCOSMETICOS', 'producto': 'MAEBE MAMAE'}
+2026-05-01 21:59:10,869 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MANTECORP FARMASA', 'producto': 'URBY UV'}
+2026-05-01 21:59:10,869 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MANTECORP SKINCARE', 'producto': 'EPIDAC OC'}
+2026-05-01 21:59:10,869 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MARIA ESCANDALOSA COSMETICOS', 'producto': 'BONEQUINHA ESCANDALOSA'}
+2026-05-01 21:59:10,870 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MASSIME', 'producto': 'MASSIME'}
+2026-05-01 21:59:10,870 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MASSIME', 'producto': 'MASSIME GEL FIXADOR'}
+2026-05-01 21:59:10,870 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MATTO VERDE', 'producto': 'NANOBOTOX'}
+2026-05-01 21:59:10,871 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MAXIBRASIL', 'producto': 'TRATTABRASIL BEAUTY BALM'}
+2026-05-01 21:59:10,871 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MAXIBRASIL', 'producto': 'TRATTABRASIL HIDRA CACHOS'}
+2026-05-01 21:59:10,871 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MAXYGEL', 'producto': 'POMADA MODELADORA INVICTUS'}
+2026-05-01 21:59:10,872 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MAXYGEL', 'producto': 'POMADA MODELADORA PREMIUM'}
+2026-05-01 21:59:10,872 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MEDQUIMICA', 'producto': 'RECREXINA MDQ'}
+2026-05-01 21:59:10,872 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MEGALABS', 'producto': 'PILEXIL ANTICASPA'}
+2026-05-01 21:59:10,872 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MENELA COSMETICOS', 'producto': 'MENELA'}
+2026-05-01 21:59:10,872 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MICREX', 'producto': 'SAMUI'}
+2026-05-01 21:59:10,872 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MIZON', 'producto': 'MIZON'}
+2026-05-01 21:59:10,873 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MOLIKA', 'producto': 'MOLIKA MLK'}
+2026-05-01 21:59:10,873 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MOONOHAIR', 'producto': 'MOONOHAIR VIM'}
+2026-05-01 21:59:10,873 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MUDD COSMETICOS', 'producto': 'MUDD'}
+2026-05-01 21:59:10,873 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MULTI B', 'producto': 'LEE STAFFORD CACTOS CRUSH'}
+2026-05-01 21:59:10,873 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MULTI B', 'producto': 'NUXE'}
+2026-05-01 21:59:10,874 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MULTI B', 'producto': 'REVLON BE FABULOUS'}
+2026-05-01 21:59:10,874 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MULTI B', 'producto': 'REVLON OROFLUIDO'}
+2026-05-01 21:59:10,874 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MURIEL', 'producto': 'MURIEL MARIA BANANA'}
+2026-05-01 21:59:10,874 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'MURIEL', 'producto': 'UMIDILIZ BABY'}
+2026-05-01 21:59:10,874 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NATUPELE', 'producto': 'DMAE'}
+2026-05-01 21:59:10,875 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NATUPELE', 'producto': 'REDUCLINE'}
+2026-05-01 21:59:10,875 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NATUPHITUS', 'producto': 'CREME FACIAL NPS'}
+2026-05-01 21:59:10,875 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NATUPHITUS', 'producto': 'FACTOR NMF'}
+2026-05-01 21:59:10,875 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NATUPHITUS', 'producto': 'UP SKIN'}
+2026-05-01 21:59:10,875 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NATURA', 'producto': 'NATURA'}
+2026-05-01 21:59:10,875 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NESTLE', 'producto': 'PURAVIDA'}
+2026-05-01 21:59:10,875 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NEUTROCARE', 'producto': 'NEUTROCARE DISNEY'}
+2026-05-01 21:59:10,876 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NEVER COSMETICOS', 'producto': 'SUPER LIZZ'}
+2026-05-01 21:59:10,876 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NEW BARBER', 'producto': 'NEW BARBER'}
+2026-05-01 21:59:10,876 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NEW TIME', 'producto': 'HERBACIN'}
+2026-05-01 21:59:10,876 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NIELY', 'producto': 'NIELY AFRO'}
+2026-05-01 21:59:10,877 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NUTRIEX', 'producto': 'KIT TEEN TITANS'}
+2026-05-01 21:59:10,877 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NUTRIEX', 'producto': 'LARANJINHA'}
+2026-05-01 21:59:10,877 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'NUTRIEX', 'producto': 'SPIDER MAN NTX'}
+2026-05-01 21:59:10,878 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'OIKOS COSMETICOS', 'producto': 'OIKOS'}
+2026-05-01 21:59:10,878 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL'}
+2026-05-01 21:59:10,878 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL FIXADOR'}
+2026-05-01 21:59:10,879 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL NUTRICAO'}
+2026-05-01 21:59:10,879 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL POMADA CAPILAR'}
+2026-05-01 21:59:10,879 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL PROFISSIONAL'}
+2026-05-01 21:59:10,879 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'AMORAVEL REPARADOR DE PONTAS'}
+2026-05-01 21:59:10,880 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'CHOICES VEGAN NUTRICAO'}
+2026-05-01 21:59:10,880 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO DAUF ANTIRUGAS'}
+2026-05-01 21:59:10,880 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO DAUF CLAREADOR'}
+2026-05-01 21:59:10,880 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO DERME DAUF'}
+2026-05-01 21:59:10,880 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PAGUE MENOS', 'producto': 'GNANO SERUM'}
+2026-05-01 21:59:10,881 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PANVEL', 'producto': 'PANVEL ORIGINAL POMADA CAPILAR'}
+2026-05-01 21:59:10,881 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PANVEL', 'producto': 'PANVEL SEMPREBEM'}
+2026-05-01 21:59:10,881 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PEPILON', 'producto': 'HF 65'}
+2026-05-01 21:59:10,881 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PETNOR', 'producto': 'OLEO DE AMENDOAS PTR'}
+2026-05-01 21:59:10,881 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PH ACTION COSMETICS', 'producto': 'PH COSMETICS'}
+2026-05-01 21:59:10,881 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PHALLEBEAUTY COSMETICS', 'producto': 'PHALLEBEAUTY MASC. PRO CHUVEIRO'}
+2026-05-01 21:59:10,882 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PHILOZON', 'producto': 'OZONCARE'}
+2026-05-01 21:59:10,882 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PHISALIA', 'producto': 'KAI LAN'}
+2026-05-01 21:59:10,882 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PIATAN NATURAL', 'producto': 'PIATAN DETOX'}
+2026-05-01 21:59:10,882 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PIATAN NATURAL', 'producto': 'PIATAN HIDRATA'}
+2026-05-01 21:59:10,882 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PIATAN NATURAL', 'producto': 'PIATAN REFRESCA'}
+2026-05-01 21:59:10,883 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PIATAN NATURAL', 'producto': 'PIATAN RENOVA'}
+2026-05-01 21:59:10,883 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PLK LOG COMERCIAL E IMPORTADORA', 'producto': 'SESDERMA C-VIT'}
+2026-05-01 21:59:10,883 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PLUSBELLE', 'producto': 'PLUSBELLE PBL'}
+2026-05-01 21:59:10,883 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA'}
+2026-05-01 21:59:10,883 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA ANTIRRUGAS'}
+2026-05-01 21:59:10,883 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PONTELAND', 'producto': 'GRANADO GRANADERMA HIDRATANTE'}
+2026-05-01 21:59:10,884 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PORTIER COSMETICOS', 'producto': 'PORTIER'}
+2026-05-01 21:59:10,884 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'POUPAFARMA', 'producto': 'POUPAFARMA'}
+2026-05-01 21:59:10,885 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PROBELLE', 'producto': 'PROBELLE AGE ULTRA'}
+2026-05-01 21:59:10,885 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PROBELLE', 'producto': 'PROBELLE POS QUIMICA'}
+2026-05-01 21:59:10,885 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PROCAO', 'producto': 'PROCAO'}
+2026-05-01 21:59:10,885 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PROCTER & GAMBLE', 'producto': 'PERT PLUS'}
+2026-05-01 21:59:10,885 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'PROMEX COMERCIO', 'producto': 'OCEANE HAIR MASK'}
+2026-05-01 21:59:10,886 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'BARBER ORIGINALS SHAMPOO'}
+2026-05-01 21:59:10,886 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD BARBER SHOP BLUE COLLECTION OS'}
+2026-05-01 21:59:10,886 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD BARBER SHOP KIT'}
+2026-05-01 21:59:10,886 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD BARBER SHOP LOUD'}
+2026-05-01 21:59:10,887 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD BARBER SHOP OLD 50S'}
+2026-05-01 21:59:10,887 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD BARBER SHOP STOUT BEER'}
+2026-05-01 21:59:10,887 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD BARBER SHOP WEISS BEER'}
+2026-05-01 21:59:10,887 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD CITY'}
+2026-05-01 21:59:10,887 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QOD COSMETICS', 'producto': 'QOD DAILY FRESH'}
+2026-05-01 21:59:10,887 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'QUEM DISSE BERENICE?', 'producto': 'QDB'}
+2026-05-01 21:59:10,888 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'RAIA DROGASIL', 'producto': 'NEEDS VEGAN BY TEA TREE'}
+2026-05-01 21:59:10,888 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'RAWA COSMETICOS', 'producto': 'LE RU'}
+2026-05-01 21:59:10,888 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'REDKEN', 'producto': 'REDKEN'}
+2026-05-01 21:59:10,888 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'REDKEN', 'producto': 'REDKEN COLOR EXTEND'}
+2026-05-01 21:59:10,888 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'REDKEN', 'producto': 'REDKEN OIL FOR ALL'}
+2026-05-01 21:59:10,888 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'RICHEE', 'producto': 'RICHEE'}
+2026-05-01 21:59:10,889 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'RICHEE', 'producto': 'RICHEE POWER DOSES'}
+2026-05-01 21:59:10,889 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'RISHON COSMETICOS', 'producto': 'TUTANAT'}
+2026-05-01 21:59:10,889 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC C-SUPERIEUR'}
+2026-05-01 21:59:10,889 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC PRO CORRECT'}
+2026-05-01 21:59:10,890 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC PRO DEFINE'}
+2026-05-01 21:59:10,890 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ROC SKINCARE', 'producto': 'ROC PRO RENOVE'}
+2026-05-01 21:59:10,890 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ROHTO MENTHOLATUM', 'producto': 'PERFECTA'}
+2026-05-01 21:59:10,890 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SALON LINE', 'producto': 'SALON LINE SOCORRO CAPILAR'}
+2026-05-01 21:59:10,891 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SALON LINE', 'producto': 'SALON LINE TOTAL LISS'}
+2026-05-01 21:59:10,891 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SAO JOAO', 'producto': 'SENSELLES SOJ'}
+2026-05-01 21:59:10,891 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SCHWARZKOPF', 'producto': 'BC BONACURE'}
+2026-05-01 21:59:10,891 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SCHWARZKOPF', 'producto': 'OSIS+'}
+2026-05-01 21:59:10,891 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SCHWARZKOPF', 'producto': 'SCHWARZKOPF'}
+2026-05-01 21:59:10,891 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SGM IND DE COSM', 'producto': 'VINI LADY VINISTEROL'}
+2026-05-01 21:59:10,892 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SGM IND DE COSM', 'producto': 'VINISTEROL'}
+2026-05-01 21:59:10,892 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SHISEIDO', 'producto': 'SHISEIDO BENEFIANCE'}
+2026-05-01 21:59:10,892 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SHISEIDO', 'producto': 'SHISEIDO BIO-PERFORMANCE'}
+2026-05-01 21:59:10,892 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SHISEIDO', 'producto': 'SHISEIDO ESSENTIALS'}
+2026-05-01 21:59:10,892 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SHISEIDO', 'producto': 'SHISEIDO ULTIMUNE'}
+2026-05-01 21:59:10,892 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SILMAX PRO', 'producto': 'SILMAX PRO'}
+2026-05-01 21:59:10,892 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SILVER LINE', 'producto': 'FIO&FORMA FIX'}
+2026-05-01 21:59:10,893 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SIMPLE ORGANIC', 'producto': 'SENSITIVE SKIN'}
+2026-05-01 21:59:10,893 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SKALA', 'producto': 'SKALA NUTRIENTS'}
+2026-05-01 21:59:10,893 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SKALA', 'producto': 'SKALA THE GARDENER'}
+2026-05-01 21:59:10,893 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SKINCEUTICALS', 'producto': 'AGE INTERRUMPER'}
+2026-05-01 21:59:10,894 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SKINLITE', 'producto': 'SKINLITE'}
+2026-05-01 21:59:10,894 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SOFT LINE', 'producto': 'SOFT LINE AMPOLAS'}
+2026-05-01 21:59:10,894 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SOFT LINE', 'producto': 'SOFT LINE DEFRIZANTE'}
+2026-05-01 21:59:10,895 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SOUVIE', 'producto': 'SOUVIE'}
+2026-05-01 21:59:10,895 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SPLENDIDA COSMETICOS', 'producto': 'COISA LINDA'}
+2026-05-01 21:59:10,895 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'SURYA BRASIL', 'producto': 'SURYA HENNA'}
+2026-05-01 21:59:10,895 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'TALIKA', 'producto': 'TALIKA'}
+2026-05-01 21:59:10,895 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'TAZIN COSMETICOS', 'producto': 'VERBALIZE'}
+2026-05-01 21:59:10,895 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'THE BEAUTY BOX', 'producto': 'HAIR FOOD'}
+2026-05-01 21:59:10,896 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'THERASKIN', 'producto': 'TELOSS 5'}
+2026-05-01 21:59:10,896 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'TIGI', 'producto': 'BED HEAD FOR MEN'}
+2026-05-01 21:59:10,896 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'TIGI', 'producto': 'CATWALK'}
+2026-05-01 21:59:10,896 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'TIGO COSMETICOS', 'producto': 'MASCARA TIGO'}
+2026-05-01 21:59:10,897 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'TRUSS PROFESSIONAL', 'producto': 'SHOCK REPAIR'}
+2026-05-01 21:59:10,897 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'TRUSS PROFESSIONAL', 'producto': 'TRUSS BRUSH'}
+2026-05-01 21:59:10,897 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'UNIAO QUIMICA', 'producto': 'CRAVOSAN'}
+2026-05-01 21:59:10,897 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'UNICA BEAUTY E COSMETICOS', 'producto': 'UNICA BEAUTY'}
+2026-05-01 21:59:10,897 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'UNILEVER', 'producto': 'SEDA VERMELHO VIBRANTE'}
+2026-05-01 21:59:10,897 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'UNILEVER', 'producto': 'SIMPLE'}
+2026-05-01 21:59:10,898 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'GRAMACYN'}
+2026-05-01 21:59:10,898 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'SKIN SAVERS'}
+2026-05-01 21:59:10,898 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK ADVANCED DEF BO'}
+2026-05-01 21:59:10,898 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK ADVANCED RETINOL'}
+2026-05-01 21:59:10,898 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK DERMAPLUMP SKIN'}
+2026-05-01 21:59:10,898 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK DNA REPAIR CREAM'}
+2026-05-01 21:59:10,898 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK FACE UP LIFT'}
+2026-05-01 21:59:10,899 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK PERFECT BALANCE'}
+2026-05-01 21:59:10,899 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK PERFECT RICE SCR'}
+2026-05-01 21:59:10,899 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'USK DERMATOLOGY', 'producto': 'U.SK RETINOL ANTIOX'}
+2026-05-01 21:59:10,899 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VALEANT', 'producto': 'RECREXINA VALEANT'}
+2026-05-01 21:59:10,899 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VICHY', 'producto': 'NEOVADIOL NOITE'}
+2026-05-01 21:59:10,900 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VITA SEIVA-SANTE', 'producto': 'BOMBA BAMBOO'}
+2026-05-01 21:59:10,900 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VITA SEIVA-SANTE', 'producto': 'VITA SEIVA ABELHA REAL'}
+2026-05-01 21:59:10,900 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VITA SEIVA-SANTE', 'producto': 'VITA SEIVA VEGAN'}
+2026-05-01 21:59:10,901 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VITAESSENCIA', 'producto': 'VITAESSENCIA'}
+2026-05-01 21:59:10,901 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VITALIFE', 'producto': 'VITAFACE'}
+2026-05-01 21:59:10,902 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VIVAI', 'producto': 'VIVAI'}
+2026-05-01 21:59:10,902 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VIZCAYA', 'producto': 'VIZCAYA HYDRA CARE'}
+2026-05-01 21:59:10,903 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'VIZCAYA', 'producto': 'VIZCAYA NUTRI INTENSE'}
+2026-05-01 21:59:10,903 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'WELEDA', 'producto': 'WELEDA'}
+2026-05-01 21:59:10,903 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'WIND FIX', 'producto': 'POMADA MODELADORA WIND'}
+2026-05-01 21:59:10,904 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'YAMA', 'producto': 'NUTRELIS'}
+2026-05-01 21:59:10,904 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'YELLOW PROFESSIONAL', 'producto': 'YELLOW YP'}
+2026-05-01 21:59:10,904 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'YENZAH', 'producto': 'BOMB WHEY'}
+2026-05-01 21:59:10,904 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'YENZAH', 'producto': 'YENZAH YELLOW OFF'}
+2026-05-01 21:59:10,905 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ZANIN PHARMA', 'producto': 'OXYCLEAR'}
+2026-05-01 21:59:10,905 | WARNING | process_pcbev | Registro rechazado: NULL en mkt_am1 | {'pais': 'BRA', 'categoria': 'HAIR CARE', 'laboratorio': 'ZOOPERS', 'producto': 'ZOOPERS KIDS'}
+2026-05-01 21:59:10,908 | INFO | process_pcbev | Validación PC/Bev: 4,292/5,096 válidos | 804 rechazados
+2026-05-01 21:59:10,908 | INFO | process_pcbev | === PROCESS PC/BEV COMPLETADO | 4,292 registros válidos ===
+2026-05-01 21:59:10,914 | INFO | run_pipeline_pcbev | ━━━ PASO 3/3: WRITE MASTER PCBEV ━━━
+2026-05-01 21:59:10,915 | INFO | write_master_pcbev | === INICIO WRITE MASTER PCBEV ===
+2026-05-01 21:59:10,915 | INFO | write_master_pcbev |   Destino:  data\master_pcbev.csv
+2026-05-01 21:59:10,915 | INFO | write_master_pcbev |   Entrante: 4,292 registros
+2026-05-01 21:59:10,916 | INFO | write_master_pcbev |   Dry run:  False
+2026-05-01 21:59:10,916 | INFO | write_master_pcbev |   master_pcbev.csv no existe — creando desde cero
+2026-05-01 21:59:11,019 | INFO | write_master_pcbev |   master_pcbev.csv escrito: 4,292 registros
+2026-05-01 21:59:11,019 | INFO | write_master_pcbev | === WRITE COMPLETADO ===
+  Anteriores:        0
+  Reemplazados:      0
+  Nuevos:        4,292
+  TOTAL FINAL:   4,292

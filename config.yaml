@@ -1,0 +1,287 @@
+# ============================================================
+# SHARE DASHBOARD — FUENTE DE VERDAD
+# Share Dashboard · Investor Reporting Pipeline
+# Versión: 1.2 | brand_consolidation desde Brands_GLI.xlsx
+# ============================================================
+
+# ------------------------------------------------------------
+# DASHBOARD — parámetros de visualización
+# ------------------------------------------------------------
+dashboard:
+  reporting_year: 2026   # am1 = MAT YYYY. Actualizar cada ciclo de datos.
+
+# ------------------------------------------------------------
+# BRAND CONSOLIDATION
+# Mapeo: "variante_closeup": "marca_madre_dashboard"
+# Solo se listan variantes que difieren de la marca madre.
+# Se aplica en process.py Paso 2/6 ANTES del pivot.
+# IMPORTANTE: si se modifica esta sección →
+#   1. Borrar data/master.csv
+#   2. Re-correr pipeline completo
+# ------------------------------------------------------------
+brand_consolidation:
+
+  # ── 1.C&C — COUGH & COLD ──────────────────────────────────
+  "CHAO ANTIGRIPAL":                "CHAO"
+  "CHAO NF":                        "CHAO"
+  "CHAO TE ANTIGRIPAL":             "CHAO"
+  "NEXT CB RA":                     "NEXT"
+  "NEXT GL":                        "NEXT"
+  "NEXT GL PLUS":                   "NEXT"
+  "NEXT GRIPE":                     "NEXT"
+  "NEXT PRIMARIA":                  "NEXT"
+  "NEXT-FWD":                       "NEXT"
+  "XL-3 VR":                        "XL-3"
+  "EXPULSATOX":                     "EXPECTOVIC"
+  "TUKOL AC":                       "TUKOL"
+  "TUKOL D":                        "TUKOL"
+  "TUKOL FORTE":                    "TUKOL"
+  "TUKOL HELIX":                    "TUKOL"
+  "TUKOL MIEL Y TOMILLO":           "TUKOL"
+  "TUKOL RAPIDA ACCION":            "TUKOL"
+  "TUKOL-D":                        "TUKOL"
+  "NASALUB MAX":                    "NASALUB"
+
+  # ── 2.DOLOR ───────────────────────────────────────────────
+  "BIO ENERGY":                     "BIO ELECTRO"
+  "BIO-ELECTRO":                    "BIO ELECTRO"
+  "CHAO FEBREDOL G3A":              "CHAO"
+  "IBU 400 PLUS":                   "IBU"
+  "IBU 400 R.A":                    "IBU"
+  "TAFIROL DUO":                    "TAFIROL"
+  "TAFIROL ESPASMO":                "TAFIROL"
+  "TAFIROL MAX":                    "TAFIROL"
+  "TAFIROL MIGRA":                  "TAFIROL"
+  "TAFIROL PLUS":                   "TAFIROL"
+  "TAFIROL RESACA":                 "TAFIROL"
+  "TAFIROLITO":                     "TAFIROL"
+  "BALSAMO BENGU.PLUS":             "BENGUE"
+  "BENGUE DESINFLAMANTE":           "BENGUE"
+  "BENGUE FREEZE":                  "BENGUE"
+  "BENGUE PM":                      "BENGUE"
+  "ULTRA BENGUE":                   "BENGUE"
+  "ULTRA-BENGUE":                   "BENGUE"
+  "X-RAY AVA":                      "X-RAY"
+  "X-RAY COLAGENO":                 "X-RAY"
+  "X-RAY COLAGENO SPORT":           "X-RAY"
+  "X-RAY COLAGENO  SPORT":          "X-RAY"
+  "X-RAY FLEX":                     "X-RAY"
+  "X-RAY GEL":                      "X-RAY"
+  "X-RAY KIT":                      "X-RAY"
+  "X-RAY MIGRA":                    "X-RAY"
+  "X-RAY SIST OSEO":                "X-RAY"
+  "X-RAYDOL":                       "X-RAY"
+  "XL-DOL":                         "X-RAY"
+
+  # ── 3.GASTRO ──────────────────────────────────────────────
+  "GENOPRAZOL HIPERAC":             "GENOPRAZOL"
+  "GENOPRAZOL PLUS":                "GENOPRAZOL"
+  "GENOPRAZOL GENOBIO":             "GENOBIOTICS"
+  "QG BIOTICS FORTALECE":           "QG BIOTICS"
+  "QG BIOTICS RESTAURA":            "QG BIOTICS"
+  "QG5 DOL":                        "QG5"
+  "QG5 PLUS":                       "QG5"
+  "TREG DOBLE ACCION":              "TREG"
+
+  # ── 4.VMS ─────────────────────────────────────────────────
+  "SHOT B DUAL 360+":               "SHOT-B"
+  "SHOT B GS MTX":                  "SHOT-B"
+  "SHOT B GS STRES":                "SHOT-B"
+  "SHOT-B IQ":                      "SHOT-B"
+
+  # ── 5.LÁGRIMAS ARTIFICIALES ───────────────────────────────
+  "LIRIS CALM":                     "LIRIS"
+  "LIRIS POWER":                    "LIRIS"
+
+  # ── 6.DERMA ───────────────────────────────────────────────
+  "LAKESIA DUO":                    "LAKESIA"
+  "SILK MEDIC":                     "SILKA MEDIC"
+  "SILKA MEDIK":                    "SILKA MEDIC"
+  "SILKA-MEDIC":                    "SILKA MEDIC"
+  "TRIATOP BY MEDICASP":            "TRIATOP"
+  "UNESIA LAKESIA":                 "UNESIA"
+
+  # ── 7.OTROS OTC ───────────────────────────────────────────
+  "ASEPXIA BB":                     "ASEPXIA"
+  "CICATRICURE AGE CARE":           "CICATRICURE"
+  "CICATRICURE AGUA":               "CICATRICURE"
+  "CICATRICURE ANTIMANCHAS":        "CICATRICURE"
+  "CICATRICURE BEAUTY CARE":        "CICATRICURE"
+  "CICATRICURE BLUR & FILLER":      "CICATRICURE"
+  "CICATRICURE CORPORAL":           "CICATRICURE"
+  "CICATRICURE GOLD LIFT":          "CICATRICURE"
+  "CICATRICURE GOLD LIFT MAQUILLA": "CICATRICURE"
+  "CICATRICURE NEURO-ZEN":          "CICATRICURE"
+  "CICATRICURE PORCELANA":          "CICATRICURE"
+  "CICATRICURE PROMO":              "CICATRICURE"
+  "CICATRICURE REGENE-PLAST":       "CICATRICURE"
+  "CICATRICURE REPARACION CORPORA": "CICATRICURE"
+  "DERMO-PRADA A/VERR":             "DERMA-PRADA"
+  "GOICOECHEA DIABET":              "DIABET TX"
+  "PACK GOICOECHEA":                "GOICOECHEA"
+  "PACK GOICOECHEA-G3A":            "GOICOECHEA"
+  "TEATRICAL TOALLITAS":            "TEATRICAL"
+  "TIO NACHO RECARGABLE":           "TIO NACHO"
+
+  # ── 8.BEBIDAS ─────────────────────────────────────────────
+  "PACK SUEROX":                    "SUEROX"
+  "SUEROX VITAM DEFEN":             "SUEROX"
+  "SUEROX VITAMI ENER":             "SUEROX"
+
+  # ── 9.LECHES ──────────────────────────────────────────────
+  "NOVALAC 3":                      "NOVAMIL"
+  "NOVAMIL 1":                      "NOVAMIL"
+  "NOVAMIL 2":                      "NOVAMIL"
+  "NOVAMIL AC 1":                   "NOVAMIL"
+  "NOVAMIL AC 2":                   "NOVAMIL"
+  "NOVAMIL AD":                     "NOVAMIL"
+  "NOVAMIL AD PLUS":                "NOVAMIL"
+  "NOVAMIL AE 1":                   "NOVAMIL"
+  "NOVAMIL AE 2":                   "NOVAMIL"
+  "NOVAMIL AE3":                    "NOVAMIL"
+  "NOVAMIL ALLERN CON":             "NOVAMIL"
+  "NOVAMIL AR 1":                   "NOVAMIL"
+  "NOVAMIL AR 2":                   "NOVAMIL"
+  "NOVAMIL AR DIGEST":              "NOVAMIL"
+  "NOVAMIL ARD PAX":                "NOVAMIL"
+  "NOVAMIL COMFORT":                "NOVAMIL"
+  "NOVAMIL RICE":                   "NOVAMIL"
+  "NOVAMIL S 2":                    "NOVAMIL"
+  "NOVAMIL SYMBIOTIC":              "NOVAMIL"
+
+# ------------------------------------------------------------
+# PATHS
+# ------------------------------------------------------------
+paths:
+  raw_data:        "data/raw/"
+  processed_data:  "data/processed/"
+  master:          "data/master.csv"
+  fx_file:         "data/raw/tipos_de_cambio.xlsx"
+  log_dir:         "logs/"
+
+# ------------------------------------------------------------
+# FINGERPRINT DEL EXCEL DE SHARES
+# ------------------------------------------------------------
+shares_file:
+  header_row: 2
+  skip_rows: [0, 1]
+
+  columns:
+    categoria:    "Categoría"
+    sub_cat:      "cat"
+    laboratorio:  "Laboratorio"
+    producto:     "Producto"
+    metric_name:  "MetricName"
+    anio_movil:   "Año Móvil"
+    valor:        "Rolling 12M (Metric Selector)"
+
+  metric_values:
+    market_share: "%MS (Rolling 12M)"
+    market_size:  "Mercado (Rolling 12M)"
+
+  anio_movil_map:
+    "Año Móvil 1 (Últimos 12M)": "am1"
+    "Año Móvil 2":               "am2"
+    "Año Móvil 3":               "am3"
+    "Año Móvil 4":               "am4"
+    "Año Móvil 5":               "am5"
+
+  sheets:
+    ARG: "Argentina"
+    BRA: "Brasil"
+    CHI: "Chile"
+    COL: "Colombia"
+    ECU: "Ecuador"
+    MEX: "México"
+    PER: "Perú"
+
+  genomma_string: "GENOMMA LAB"
+
+# ------------------------------------------------------------
+# FINGERPRINT DEL ARCHIVO TIPO DE CAMBIO
+# ------------------------------------------------------------
+fx_file:
+  sheet:       "Resumen"
+  date_col:    1
+  header_row:  9
+
+  er_columns:
+    ARG: 9
+    BRA: 15
+    CHI: 18
+    COL: 21
+    ECU: null
+    MEX: 3
+    PER: 30
+
+# ------------------------------------------------------------
+# SCHEMA DEL MASTER.CSV
+# ------------------------------------------------------------
+master_schema:
+  primary_key:
+    - pais
+    - categoria
+    - sub_categoria
+    - laboratorio
+    - producto
+
+  dimensions:
+    - pais
+    - pais_nombre
+    - categoria
+    - sub_categoria
+    - laboratorio
+    - producto
+    - es_genomma
+
+  market_share:
+    - ms_am1
+    - ms_am2
+    - ms_am3
+    - ms_am4
+    - ms_am5
+
+  market_size_local:
+    - mkt_am1
+    - mkt_am2
+    - mkt_am3
+    - mkt_am4
+    - mkt_am5
+
+  market_size_usd:
+    - mkt_usd_am1
+    - mkt_usd_am2
+    - mkt_usd_am3
+    - mkt_usd_am4
+    - mkt_usd_am5
+
+  fx_metadata:
+    - er_aplicado
+
+# ------------------------------------------------------------
+# REGLAS DE VALIDACIÓN
+# ------------------------------------------------------------
+validation:
+  ms_range:
+    min: 0.0
+    max: 100.0
+
+  mkt_min: 0.0
+
+  required_not_null:
+    - pais
+    - categoria
+    - sub_categoria
+    - laboratorio
+    - producto
+    - mkt_am1
+
+  on_validation_failure: "skip"
+
+# ------------------------------------------------------------
+# CONFIGURACIÓN DE LOGS
+# ------------------------------------------------------------
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+  file_pattern: "logs/pipeline_{date}.log"

@@ -1,0 +1,26 @@
+2026-05-01 21:51:27,831 | INFO | root | Log activo: logs\pipeline_pcbev_20260501_215127.log
+2026-05-01 21:51:27,847 | INFO | run_pipeline_pcbev | ━━━ PASO 1/3: INGEST PC/BEV ━━━
+2026-05-01 21:51:27,850 | INFO | ingest_pcbev | === INICIO INGEST PC/BEV | 2 archivo(s) ===
+2026-05-01 21:51:27,850 | INFO | ingest_pcbev | Leyendo archivo: 02.2026 Brasil PC_Beverages_Base Shares.xlsx
+2026-05-01 21:53:11,311 | INFO | ingest_pcbev |   Filas leídas: 1,048,565 | hoja: 'Sheet1'
+2026-05-01 21:53:13,157 | WARNING | ingest_pcbev | No se pudo extraer fecha de reporte del nombre: '02.2026 Brasil PC_Beverages_Base Shares'
+2026-05-01 21:53:13,217 | INFO | ingest_pcbev |   Archivo procesado: 02.2026 Brasil PC_Beverages_Base Shares.xlsx | reporte: desconocido | submarket únicos: ['2 en 1', '3s pasos', 'Acondicionador', 'Cicatrices', 'Corporales', 'Hidratantes', 'Kit', 'Limpieza', 'Piernas', 'Shampoo', 'Solar', 'Sueros & Isotonicas']
+2026-05-01 21:53:13,217 | INFO | ingest_pcbev | Leyendo archivo: 03.2026 Brasil PC_Beverages_Base Shares.xlsx
+2026-05-01 21:54:57,577 | INFO | ingest_pcbev |   Filas leídas: 1,048,565 | hoja: 'Sheet1'
+2026-05-01 21:54:59,278 | WARNING | ingest_pcbev | No se pudo extraer fecha de reporte del nombre: '03.2026 Brasil PC_Beverages_Base Shares'
+2026-05-01 21:54:59,327 | INFO | ingest_pcbev |   Archivo procesado: 03.2026 Brasil PC_Beverages_Base Shares.xlsx | reporte: desconocido | submarket únicos: ['2 en 1', '3s pasos', 'Acondicionador', 'Cicatrices', 'Corporales', 'Hidratantes', 'Kit', 'Limpieza', 'Piernas', 'Shampoo', 'Solar', 'Sueros & Isotonicas', 'Tratamiento']
+2026-05-01 21:54:59,369 | INFO | ingest_pcbev | Combinando 2 archivo(s) | 60 períodos únicos total
+2026-05-01 21:55:01,600 | INFO | ingest_pcbev | Combinación completada: 1,096,261 filas totales
+2026-05-01 21:55:01,817 | INFO | ingest_pcbev | === INGEST PC/BEV COMPLETADO ===
+  Archivos procesados: 2
+  Período: 03/2021 → 02/2026 (60 meses)
+  Filas consolidadas: 1,096,261
+2026-05-01 21:55:01,827 | ERROR | run_pipeline_pcbev | PIPELINE PC/BEV FALLIDO después de 214.0s
+Traceback (most recent call last):
+  File "C:\Users\User1\OneDrive\Documents\01 Consumer Insights\Share-Dashboard\run_pipeline_pcbev.py", line 198, in main
+    print(f"  ✅ Ingest:   {len(df_raw):,} filas consolidadas")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User1\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 2: character maps to <undefined>

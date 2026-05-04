@@ -1,0 +1,27 @@
+2026-05-01 21:45:11,834 | INFO | root | Log activo: logs\pipeline_20260501_214511.log
+2026-05-01 21:45:13,293 | INFO | run_pipeline | ━━━ PASO 1/3: INGEST ━━━
+2026-05-01 21:45:13,306 | INFO | ingest | Iniciando ingesta | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx | hojas: ['ARG', 'BRA', 'CHI', 'COL', 'ECU', 'MEX', 'PER']
+2026-05-01 21:45:13,306 | INFO | ingest | Leyendo hoja: ARG | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-01 21:45:15,501 | INFO | ingest | Hoja 'ARG': 12,344 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-01 21:45:15,502 | INFO | ingest | Leyendo hoja: BRA | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-01 21:45:17,718 | INFO | ingest | Hoja 'BRA': 21,738 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-01 21:45:17,718 | INFO | ingest | Leyendo hoja: CHI | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-01 21:45:18,598 | INFO | ingest | Hoja 'CHI': 7,584 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-01 21:45:18,598 | INFO | ingest | Leyendo hoja: COL | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-01 21:45:20,649 | INFO | ingest | Hoja 'COL': 23,972 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-01 21:45:20,649 | INFO | ingest | Leyendo hoja: ECU | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-01 21:45:21,816 | INFO | ingest | Hoja 'ECU': 13,022 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-01 21:45:21,816 | INFO | ingest | Leyendo hoja: MEX | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-01 21:45:23,615 | INFO | ingest | Hoja 'MEX': 23,090 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-01 21:45:23,615 | INFO | ingest | Leyendo hoja: PER | archivo: data/raw/02.2026 Data OTC CloseUP Moneda local.xlsx
+2026-05-01 21:45:24,456 | INFO | ingest | Hoja 'PER': 9,806 filas leídas | métricas: ['%MS (Rolling 12M)', 'Mercado (Rolling 12M)']
+2026-05-01 21:45:24,456 | INFO | ingest | Ingesta completada | 7 hojas | 111,556 filas totales
+2026-05-01 21:45:24,456 | ERROR | run_pipeline | PIPELINE FALLIDO después de 11.2s
+Traceback (most recent call last):
+  File "C:\Users\User1\OneDrive\Documents\01 Consumer Insights\Share-Dashboard\run_pipeline.py", line 90, in main
+    print(f"  ✅ Ingest:  {len(raw_data)} países | {total_raw:,} filas raw")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User1\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 2: character maps to <undefined>
